@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const homeRoute = require('./routes/homeRoutes')
+const userRoute = requir('/routers/userRoutes')
 
 const app = express();
 const con = 'mongodb+srv://tester:zP1Ucfu0RYDeiwgr@nodecms.bp90q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
@@ -17,3 +18,4 @@ mongoose.connect(con)
     .catch(err => console.log(err))
 
 app.use(homeRoute);
+app.use(userRoute);
