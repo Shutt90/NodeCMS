@@ -1,0 +1,18 @@
+#myVideo {
+  position: relative;
+  min-width: 100%;
+  min-height: 100%;
+  right: 0;
+  bottom: 0;
+}
+
+.text {
+  position: absolute;
+  left: 25%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  z-index: 1001;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+}/*# sourceMappingURL=app.css.map */
