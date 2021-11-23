@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/auth', (req, res) => {
-    res.render('register');
+    res.render('auth/login', {title: 'Login'});
 })
 
 router.get('/register', (req, res) => {
-    res.render('views/auth/register')
+    res.render('auth/register', {title: 'Register'})
 })
 
 router.post('/register', (req, res) => {

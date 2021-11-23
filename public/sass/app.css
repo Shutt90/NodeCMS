@@ -1,3 +1,4 @@
+@import "./partials/auth.css";
 #myVideo {
   position: relative;
   min-width: 100%;
