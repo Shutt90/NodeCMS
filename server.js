@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const homeRoute = require('./routes/homeRoutes')
-const userRoute = require('/routers/userRoutes')
+const userRoute = require('./routes/userRoutes')
 
 const app = express();
 const con = 'mongodb+srv://tester:zP1Ucfu0RYDeiwgr@nodecms.bp90q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
