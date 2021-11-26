@@ -1,0 +1,71 @@
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border: 2px black solid;
+    border-radius: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 500px;
+
+    .input {
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        margin: 1rem 0;
+    }
+}
+
+.login {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(45deg, $primary, $secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-title {
+        font-size: 3rem;
+        text-align: center;
+    }
+    
+    &-container {
+        margin: auto;
+        background-color: #F2F2F2;
+        padding: 2rem;
+        border: solid black 2px;
+        border-radius: 2rem;
+        justify-content: center;
+        align-items: center;
+        max-width: 500px;
+        
+    }
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+
+        .input {
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+        }
+
+        .submit {
+            margin-top: 1rem;
+            background-color: $secondary;
+            padding: 0.2rem 1rem;
+            border-radius: 2rem;
+
+            &:hover {
+                background-color: $primary;
+            }
+
+        }
+        
+    }
+}

@@ -1,9 +1,17 @@
 <%- include('../partials/header.ejs') %>
+<section class="login">
 
-<form method="/login" action="POST">
-    <input name="email" class="input" type="text">
-    <input name="password" class="input" type="password">
-    <input class="submit" type="submit">
-</form>
+    <div class="login-container">
+        <h2 class="login-title">LOGIN</h2>
+        <form class="login-form" method="/login" action="POST">
+            <label for="email">Email:</label>
+            <input name="email" class="input" type="text">
+            <label for="password">Password:</label>
+            <input name="password" class="input" type="password">
+            <input class="submit" type="submit">
+        </form>
+    </div>
+
+</section>
 
 <%- include('../partials/footer.ejs') %>

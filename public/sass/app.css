@@ -1,8 +1,18 @@
-@import "./partials/auth.css";
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+/* Colours */
+/* Globals */
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Bebas Neue", cursive;
+}
+
 #myVideo {
   position: relative;
-  min-width: 100%;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   right: 0;
   bottom: 0;
 }
@@ -16,4 +26,66 @@
   z-index: 1001;
   background-color: rgba(0, 0, 0, 0.2);
   padding: 1rem;
+}
+
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border: 2px black solid;
+  border-radius: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  max-width: 500px;
+}
+.reg-form .input {
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  margin: 1rem 0;
+}
+
+.login {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(45deg, #E739F5, #61D9DE);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-title {
+  font-size: 3rem;
+  text-align: center;
+}
+.login-container {
+  margin: auto;
+  background-color: #F2F2F2;
+  padding: 2rem;
+  border: solid black 2px;
+  border-radius: 2rem;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.login-form .input {
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  margin: 1rem 0;
+}
+.login-form .submit {
+  margin-top: 1rem;
+  background-color: #61D9DE;
+  padding: 0.2rem 1rem;
+  border-radius: 2rem;
+}
+.login-form .submit:hover {
+  background-color: #E739F5;
 }/*# sourceMappingURL=app.css.map */

@@ -1,0 +1,17 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+/* Colours */
+
+$primary: #E739F5;
+$secondary: #61D9DE;
+
+
+/* Globals */
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Bebas Neue', cursive;
+}
