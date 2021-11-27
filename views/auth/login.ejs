@@ -4,12 +4,17 @@
     <div class="login-container">
         <h2 class="login-title">LOGIN</h2>
         <form class="login-form" method="/login" action="POST">
-            <label for="email">Email:</label>
-            <input name="email" class="input" type="text">
-            <label for="password">Password:</label>
-            <input name="password" class="input" type="password">
+            <div class="login-email">
+                <label for="email"><img src="/images/icons8-email-128.png"></label>
+                <input placeholder="Email..." name="email" class="input" type="text">
+            </div>
+            <div class="login-password">
+                <label for="email"><img src="/images/icons8-lock-30.png"></label>
+                <input placeholder="Password..." name="password" class="input" type="password">
+            </div>
             <input class="submit" type="submit">
         </form>
+        <a class="sign-up" href="sign-up">SIGN UP TODAY</a>
     </div>
 
 </section>

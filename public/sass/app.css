@@ -59,6 +59,8 @@ body {
 }
 .login-container {
   margin: auto;
+  display: flex;
+  flex-direction: column;
   background-color: #F2F2F2;
   padding: 2rem;
   border: solid black 2px;
@@ -75,17 +77,53 @@ body {
   align-items: center;
   margin: auto;
 }
+.login-form .login-email {
+  position: relative;
+}
+.login-form .login-password {
+  position: relative;
+}
+.login-form label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 30px;
+  width: 30px;
+  z-index: 1;
+}
+.login-form label img {
+  width: 30px;
+  height: 30px;
+  padding-left: 0.5rem;
+}
 .login-form .input {
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
+  position: relative;
+  padding: 0.5rem 0.5rem 0.5rem 3rem;
   margin: 1rem 0;
+  height: 30px;
+  background-color: #F2F2F2;
+  border: none;
+  border-bottom: 2px black solid;
+  font-size: 1rem;
 }
 .login-form .submit {
   margin-top: 1rem;
   background-color: #61D9DE;
   padding: 0.2rem 1rem;
   border-radius: 2rem;
+  font-family: "Bebas Neue", cursive;
 }
 .login-form .submit:hover {
   background-color: #E739F5;
+}
+.login .sign-up {
+  margin-top: 1rem;
+  padding: 0.2rem 1rem;
+  color: black;
+  text-decoration: none;
+  border-radius: 2rem;
+}
+.login .sign-up:hover {
+  background-color: #61D9DE;
 }/*# sourceMappingURL=app.css.map */
