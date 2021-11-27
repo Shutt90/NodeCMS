@@ -1,13 +1,11 @@
-const express = require('express');
+const authController = require('../controllers/authController');
 const router = express.Router();
 
 router.get('/auth', (req, res) => {
     res.render('auth/login', {title: 'Login'});
 })
 
-router.get('/register', (req, res) => {
-    res.render('auth/register', {title: 'Register'})
-})
+router.get('/register', authController.register_index)
 
 router.post('/register', (req, res) => {
 
