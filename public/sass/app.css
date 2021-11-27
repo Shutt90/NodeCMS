@@ -28,21 +28,69 @@ body {
   padding: 1rem;
 }
 
-.reg-form {
+.register {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(45deg, #E739F5, #61D9DE);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.register-title {
+  font-size: 3rem;
+  text-align: center;
+}
+.register-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #F2F2F2;
   padding: 2rem;
-  border: 2px black solid;
+  border: solid black 2px;
   border-radius: 2rem;
   justify-content: center;
   align-items: center;
-  margin: auto;
   max-width: 500px;
 }
-.reg-form .input {
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  margin: 1rem 0;
+.register-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  min-width: 300px;
+}
+.register-form .input {
+  position: relative;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  height: 20px;
+  background-color: #F2F2F2;
+  border: none;
+  border-bottom: 2px black solid;
+  font-size: 1rem;
+}
+.register-form .submit {
+  margin-top: 1rem;
+  background-color: #61D9DE;
+  padding: 0.2rem 1rem;
+  border-radius: 2rem;
+  font-family: "Bebas Neue", cursive;
+}
+.register-form .submit:hover {
+  background-color: #E739F5;
+}
+.register .sign-in {
+  margin-top: 1rem;
+  padding: 0.2rem 1rem;
+  color: black;
+  text-decoration: none;
+  border-radius: 2rem;
+}
+.register .sign-in:hover {
+  background-color: #61D9DE;
 }
 
 .login {

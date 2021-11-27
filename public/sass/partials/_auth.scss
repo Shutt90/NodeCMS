@@ -1,18 +1,80 @@
-.reg-form {
+.register {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(45deg, $primary, $secondary);
     display: flex;
     flex-direction: column;
-    padding: 2rem;
-    border: 2px black solid;
-    border-radius: 2rem;
-    justify-content: center;
     align-items: center;
-    margin: auto;
-    max-width: 500px;
+    justify-content: center;
 
-    .input {
-        padding: 0.5rem 1rem;
-        border-radius: 1rem;
-        margin: 1rem 0;
+    &-title {
+        font-size: 3rem;
+        text-align: center;
+    }
+    
+    &-container {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        background-color: #F2F2F2;
+        padding: 2rem;
+        border: solid black 2px;
+        border-radius: 2rem;
+        justify-content: center;
+        align-items: center;
+        max-width: 500px;
+        
+    }
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        min-width: 300px;
+
+        .input {
+            position: relative;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            height: 20px;
+            background-color: #F2F2F2;
+            border: none;
+            border-bottom: 2px black solid;
+            font-size: 1rem;
+        }
+
+
+
+        .submit {
+            margin-top: 1rem;
+            background-color: $secondary;
+            padding: 0.2rem 1rem;
+            border-radius: 2rem;
+            font-family: 'Bebas Neue', cursive;
+
+            &:hover {
+                background-color: $primary;
+            }
+
+        }
+    }
+
+
+    .sign-in {
+        margin-top: 1rem;
+        padding: 0.2rem 1rem;
+        color: black;
+        text-decoration: none;
+        border-radius: 2rem;
+        
+
+        &:hover {
+            background-color: $secondary;
+        }
+
     }
 }
 
