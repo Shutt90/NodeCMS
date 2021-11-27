@@ -14,8 +14,8 @@ app.use(express.urlencoded({ extended: true })) //accepting form data
 app.set('view engine', 'ejs')
 
 mongoose.connect(con)
-    .then((result) => app.listen(PORT))
-    .then((result) => console.log(`DB Connected and you're running on port:${PORT}`))
+    .then(app.listen(PORT))
+    .then(console.log(`DB Connected and you're running on port:${PORT}`))
     .catch(err => console.log(err))
 
 app.use(homeRoute);

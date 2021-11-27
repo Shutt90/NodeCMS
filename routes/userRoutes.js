@@ -1,5 +1,8 @@
-const authController = require('../controllers/authController');
+const express = require('express')
 const router = express.Router();
+
+const authController = require('../controllers/authController');
+
 
 router.get('/auth', (req, res) => {
     res.render('auth/login', {title: 'Login'});
@@ -7,9 +10,7 @@ router.get('/auth', (req, res) => {
 
 router.get('/register', authController.register_index)
 
-router.post('/register', (req, res) => {
-
-})
+router.post('/register', authController.register_store)
 
 router.post('/login', (req, res, next) => {
 

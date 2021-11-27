@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 
-<form class="reg-form" method="/register" action="POST">
+<form class="reg-form" method="POST" action="/register">
     <label for ="first_name">First Name:</label>
     <input name="first_name" class="input" type="text">
     <label for ="surname">Surname:</label>
@@ -13,6 +13,8 @@
     <input name="addstreet" class="input" type="text">
     <label for ="addpostcode">Postcode:</label>
     <input name="addpostcode" class="input" type="text">
+    <label for ="contact">Mobile/Cell:</label>
+    <input name="contact" class="input" type="text">
     <label for ="password">Password:</label>
     <input name="password" class="input" type="password">
     <label for ="password_confirmation">Confirm Password:</label>
