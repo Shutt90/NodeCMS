@@ -35,32 +35,46 @@ const login_index = (req, res) => {
 const login_auth = async (req, res) => {
 
     const email = req.body.email;
-    const user = User.findOne({
-        email: email,
-    })
+    const password = req.body.password;
+    
+    const success = await check_user(email, password);
 
-    const password = await bcrypt.compare(req.body.password, user.password, async function(res, err) {
-        if(err) {
-            console.log(err)
-        }
-
-    });
-
-    const userFound = User.findOne({
-        email: email,
-        password: password,
-    })
-
-    try {
-        if(!userFound) {
-            return res.status(400).send("We don't have a user with that email")
-        } else {
-            res.status(200).send('Success')
-        }
-
-    } catch(error) {
-        res.status(500).send('Server Error');
+    if(success) {
+        res.status(200).send() //redirect
+    } else {
+        res.status(400).send("Invalid username/password")
     }
+}
+
+const check_user = async (email, password) => {
+
+    let success;
+
+    const user = await User.findOne({
+        email: email,
+    })
+
+    if(user) {
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (isMatch) {
+            success = true;
+        } else {
+            success = false;
+        }
+    } else { 
+        success = false;
+    }
+    return success
+}
+
+const test_auth = async (email) => {
+
+    const user = await User.findOne({
+        email: email,
+    })
+
+    return user;
+
 }
 
 
@@ -69,4 +83,6 @@ module.exports = {
     register_store,
     login_index,
     login_auth,
+    test_auth,
+    check_user,
 }
