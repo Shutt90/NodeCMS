@@ -11,6 +11,8 @@ router.get('/login', authController.login_index)
 
 router.post('/login', authController.login_auth)
 
+router.get('/verify-user/:verify_token', authController.verified_user)
+
 // router.get('/logout', authControll.login_auth)
 
 module.exports = router
