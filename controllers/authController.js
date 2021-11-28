@@ -1,8 +1,8 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
-const server = require('../server');
 const secrets = require('../secrets');
+const { v4: uuidv4 } = require('uuid');
 
 const register_index = (req, res) => {
     res.render('auth/register', {title: 'Register'})
@@ -11,6 +11,8 @@ const register_index = (req, res) => {
 const register_store = async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
+        const verify_token = uuidv4();
+
         const user = new User({
             first_name: req.body.first_name,
             surname: req.body.surname,
@@ -21,6 +23,8 @@ const register_store = async (req, res) => {
             addpostcode: req.body.addpostcode,
             contact: req.body.contact,
             password: hashedPassword,
+            verify_token: verify_token,
+
         })
 
         // const emailSent = await send_verification();
@@ -35,53 +39,60 @@ const register_store = async (req, res) => {
 }
 
 const send_verification = async (req, res) => {
+
+    try {
+
+        let transporter = nodemailer.createTransport({
+            host: secrets.ipAddress,
+            port: 465,
+            secure: false,
+            auth: {
+                user: secrets.noreply,
+                pass: secrets.password,
+            },
+            tls: {
+                rejectUnauthorized: false,
+            }
+        })
     
-    let transporter = nodemailer.createTransport({
-        host: secrets.ipAddress,
-        port: 465,
-        secure: false,
-        auth: {
-            user: secrets.noreply,
-            pass: secrets.password,
-        },
-        tls: {
-            rejectUnauthorized: false,
+        const email = `
+        <div style="display:flex; flex-direction: column;">
+            <h2>Email verification</h2>
+            <p class="font-size: 1rem;">
+                Confirm you are a legend by clicking the link below, robots need not apply
+            </p>
+            <a href="${secrets.HOST}:${secrets.PORT}/register-confirm">
+                VERIFY ME
+            </a>
+        </div>`
+        
+        const endUser = 'liam.pugh.009@gmail.com';
+    
+        const mailOptions = {
+            from: secrets.noreply,
+            to: endUser,
+            subject: 'Verification Email',
+            html: email
         }
-    })
-
-    const email = `
-    <div style="display:flex; flex-direction: column;">
-        <h2>Email verification</h2>
-        <p class="font-size: 1rem;">
-            Confirm you are a legend by clicking the link below, robots need not apply
-        </p>
-        <a href="${secrets.HOST}:${secrets.PORT}/register-confirm">
-            VERIFY ME
-        </a>
-    </div>`
     
-    const endUser = 'liam.pugh.009@gmail.com';
-
-    const mailOptions = {
-        from: secrets.noreply,
-        to: endUser,
-        subject: 'Verification Email',
-        html: email
-    }
-
-    const mailInfo = await transporter.sendMail(mailOptions).catch(console.log);
-
-    if(mailInfo != null || mailInfo != undefined) {
-        if (mailInfo.envelope.to[0] === endUser) {
-            console.log("Message sent");
+        const mailInfo = await transporter.sendMail(mailOptions).catch(console.log);
+    
+        if(mailInfo != null || mailInfo != undefined) {
+            if (mailInfo.envelope.to[0] === endUser) {
+                res.status(200).send('Message sent');
+            } else {
+                console.log('Error, message not sent')
+            }
         } else {
-            console.log('Error')
+            console.log('Error, message not sent')
         }
-    } else {
-        console.log('Error')
+    
+    } catch(error) {
+
+        console.log(error)
+        
     }
-
-
+    
 }
 
 const login_index = (req, res) => {
