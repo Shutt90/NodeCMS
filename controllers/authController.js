@@ -162,7 +162,7 @@ const login_auth = async (req, res) => {
     const success = await check_user(email, password);
 
     if(success) {
-        await check_verified()
+        await check_verified(res, email)
     } else {
         res.status(400).send("Invalid username/password")
     }
@@ -173,6 +173,8 @@ const check_verified = async(res, email) => {
     const user = await User.findOne({
         email: email,
     })
+
+    console.log(user)
 
     if(user.verified != true ) {
         res.render('system/system', {
