@@ -27,18 +27,36 @@ const register_store = async (req, res) => {
 
         })
 
-        await send_verification(undefined, user.verify_token, user.email);
-        user.save();
+        await user.save().catch(err => {
+            console.log(err)
+            if ( err.code == 11000 ) {
+                res.render('system/system', {
+                    title: 'Ooops',
+                    message: 'Ooops',
+                    greeting: "We currently already have a user with that email",
+                    user: null,
+                    link: '/register',
+                    linkMessage: 'Go back'
+                });
+                return;
+            }
+        });
+
         res.status(201).render('system/system', {
             title: 'Registration',
             message: 'Thank you for signing up',
             greeting: 'Please check your email to verify your account, you will need to do this to login',
             user: null,
+            link: null,
+            linkMessage: null
         });
+
+        await send_verification(undefined, user.verify_token, user.email);
+
         
     } catch(error) {
         console.log(error)
-        res.send(500).send();
+
     } 
 }
 
@@ -77,10 +95,10 @@ const send_verification = async (result, token, usersEmail) => {
             html: email
         }
 
-        const mailInfo = await transporter.sendMail(mailOptions);
+        const mailInfo = await transporter.sendMail(mailOptions)
     
         if(mailInfo != null || mailInfo != undefined) {
-            if (mailInfo.envelope.to[0] === endUser) {
+            if (mailInfo.envelope.to[0] === usersEmail) {
                 console.log("Message Sent");
             } else {
                 console.log('Error, message not sent')
@@ -115,6 +133,8 @@ const verified_user = async (req, res) => {
             greeting: 'Welcome',
             user: user.first_name,
             message: 'Account now verified',
+            link: null,
+            linkMessage: null
 
         })
     } else {
@@ -123,6 +143,8 @@ const verified_user = async (req, res) => {
             greeting: null,
             user: 'User not found',
             message: 'Account not found',
+            link: null,
+            linkMessage: null
         })
     }
 
@@ -158,6 +180,8 @@ const check_verified = async(res, email) => {
             message: "Sorry, but...",
             greeting: "You haven't yet verified your account, please check your emails and try again",
             user: null,
+            link: null,
+            linkMessage: null
         })
     } else {
         res.status(200).redirect('dashboard')
