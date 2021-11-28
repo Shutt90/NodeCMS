@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const homeRoute = require('./routes/homeRoutes');
 const userRoute = require('./routes/userRoutes');
+const adminRoute = require('./routes/adminRoutes');
 const secrets = require('./secrets');
 
 const app = express();
@@ -19,3 +20,4 @@ mongoose.connect(con)
 
 app.use(homeRoute);
 app.use(userRoute);
+app.use(adminRoute);

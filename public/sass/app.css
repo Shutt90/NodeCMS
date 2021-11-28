@@ -175,4 +175,18 @@ body {
 }
 .login .sign-up:hover {
   background-color: #61D9DE;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.header h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+.header h3 {
+  font-size: 1.5rem;
+  text-align: center;
 }/*# sourceMappingURL=app.css.map */

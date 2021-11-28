@@ -27,9 +27,14 @@ const register_store = async (req, res) => {
 
         })
 
-        await send_verification(undefined, user.verify_token);
+        await send_verification(undefined, user.verify_token, user.email);
         user.save();
-        res.status(201).send();
+        res.status(201).render('system/system', {
+            title: 'Registration',
+            message: 'Thank you for signing up',
+            greeting: 'Please check your email to verify your account, you will need to do this to login',
+            user: null,
+        });
         
     } catch(error) {
         console.log(error)
@@ -37,63 +42,46 @@ const register_store = async (req, res) => {
     } 
 }
 
-const send_verification = async (result, token) => {
+const send_verification = async (result, token, usersEmail) => {
 
     try {
 
-        // let transporter = nodemailer.createTransport({
-        //     host: secrets.ipAddress,
-        //     port: 465,
-        //     secure: false,
-        //     auth: {
-        //         user: secrets.noreply,
-        //         pass: secrets.password,
-        //     },
-        //     tls: {
-        //         rejectUnauthorized: false,
-        //     }
-        // })
-
-        let testAccount = await nodemailer.createTestAccount();
-
-        // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
-          host: "smtp.ethereal.email",
-          port: 587,
-          secure: false, // true for 465, false for other ports
-          auth: {
-            user: testAccount.user, // generated ethereal user
-            pass: testAccount.pass, // generated ethereal password
-          },
-        });
-
-
+            host: secrets.ipAddress,
+            port: 465,
+            secure: true,
+            auth: {
+                user: secrets.noreply,
+                pass: secrets.password,
+            },
+            tls: {
+                rejectUnauthorized: false,
+            }
+        })
     
     const email = `
-        <div style="display:flex; flex-direction: column;">
+        <div>
             <h2>Email verification</h2>
-            <p class="font-size: 1rem;">
+            <p style="font-size: 1rem;">
                 Confirm you are a legend by clicking the link below, robots need not apply
             </p>
             <a href="http://${secrets.HOST}:${secrets.PORT}/verify-user/${token}">
                 VERIFY ME
             </a>
         </div>`
-        
-        const endUser = 'liam.pugh.009@gmail.com';
     
         const mailOptions = {
             from: secrets.noreply,
-            to: endUser,
+            to: usersEmail,
             subject: 'Verification Email',
             html: email
         }
 
-        const mailInfo = await transporter.sendMail(mailOptions).catch(console.log);
+        const mailInfo = await transporter.sendMail(mailOptions);
     
         if(mailInfo != null || mailInfo != undefined) {
             if (mailInfo.envelope.to[0] === endUser) {
-                console.log("Preview URL: %s", nodemailer.getTestMessageUrl(mailInfo));
+                console.log("Message Sent");
             } else {
                 console.log('Error, message not sent')
             }
@@ -121,11 +109,22 @@ const verified_user = async (req, res) => {
     user.verified = true;
     user.save();
 
-    res.render('system/system', {
-        title: 'Verification',
-        user: user.first_name,
+    if(user.verified === true) {
+        res.render('system/system', {
+            title: 'Verification',
+            greeting: 'Welcome',
+            user: user.first_name,
+            message: 'Account now verified',
 
-    })
+        })
+    } else {
+        res.render('system/system', {
+            title: 'Verification',
+            greeting: null,
+            user: 'User not found',
+            message: 'Account not found',
+        })
+    }
 
 }
 
@@ -141,10 +140,29 @@ const login_auth = async (req, res) => {
     const success = await check_user(email, password);
 
     if(success) {
-        res.status(200).send() //redirect
+        await check_verified()
     } else {
         res.status(400).send("Invalid username/password")
     }
+}
+
+const check_verified = async(res, email) => {
+
+    const user = await User.findOne({
+        email: email,
+    })
+
+    if(user.verified != true ) {
+        res.render('system/system', {
+            title: 'Unverified',
+            message: "Sorry, but...",
+            greeting: "You haven't yet verified your account, please check your emails and try again",
+            user: null,
+        })
+    } else {
+        res.status(200).redirect('dashboard')
+    }
+    
 }
 
 const check_user = async (email, password) => {
@@ -167,6 +185,7 @@ const check_user = async (email, password) => {
     }
     return success
 }
+
 
 const test_auth = async (email) => {
 
