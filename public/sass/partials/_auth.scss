@@ -83,6 +83,7 @@
     width: 100vw;
     background: linear-gradient(45deg, $primary, $secondary);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
