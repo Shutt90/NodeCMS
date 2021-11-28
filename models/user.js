@@ -38,6 +38,11 @@ const userSchema = new Schema ({
         type: String,
         required: true,
     },
+    verified: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
     verify_token: {
         type: String,
         required: true,

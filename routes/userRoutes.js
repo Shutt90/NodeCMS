@@ -11,7 +11,7 @@ router.get('/login', authController.login_index)
 
 router.post('/login', authController.login_auth)
 
-router.get('/register-verify', authController.send_verification)
+router.get('/verify-user/:verify_token', authController.verified_user)
 
 // router.get('/logout', authControll.login_auth)
 

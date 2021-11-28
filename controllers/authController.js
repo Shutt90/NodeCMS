@@ -27,8 +27,7 @@ const register_store = async (req, res) => {
 
         })
 
-        // const emailSent = await send_verification();
-        // console.log(emailSent)
+        await send_verification(undefined, user.verify_token);
         user.save();
         res.status(201).send();
         
@@ -38,30 +37,45 @@ const register_store = async (req, res) => {
     } 
 }
 
-const send_verification = async (req, res) => {
+const send_verification = async (result, token) => {
 
     try {
 
+        // let transporter = nodemailer.createTransport({
+        //     host: secrets.ipAddress,
+        //     port: 465,
+        //     secure: false,
+        //     auth: {
+        //         user: secrets.noreply,
+        //         pass: secrets.password,
+        //     },
+        //     tls: {
+        //         rejectUnauthorized: false,
+        //     }
+        // })
+
+        let testAccount = await nodemailer.createTestAccount();
+
+        // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
-            host: secrets.ipAddress,
-            port: 465,
-            secure: false,
-            auth: {
-                user: secrets.noreply,
-                pass: secrets.password,
-            },
-            tls: {
-                rejectUnauthorized: false,
-            }
-        })
+          host: "smtp.ethereal.email",
+          port: 587,
+          secure: false, // true for 465, false for other ports
+          auth: {
+            user: testAccount.user, // generated ethereal user
+            pass: testAccount.pass, // generated ethereal password
+          },
+        });
+
+
     
-        const email = `
+    const email = `
         <div style="display:flex; flex-direction: column;">
             <h2>Email verification</h2>
             <p class="font-size: 1rem;">
                 Confirm you are a legend by clicking the link below, robots need not apply
             </p>
-            <a href="${secrets.HOST}:${secrets.PORT}/register-confirm">
+            <a href="http://${secrets.HOST}:${secrets.PORT}/verify-user/${token}">
                 VERIFY ME
             </a>
         </div>`
@@ -74,12 +88,12 @@ const send_verification = async (req, res) => {
             subject: 'Verification Email',
             html: email
         }
-    
+
         const mailInfo = await transporter.sendMail(mailOptions).catch(console.log);
     
         if(mailInfo != null || mailInfo != undefined) {
             if (mailInfo.envelope.to[0] === endUser) {
-                res.status(200).send('Message sent');
+                console.log("Preview URL: %s", nodemailer.getTestMessageUrl(mailInfo));
             } else {
                 console.log('Error, message not sent')
             }
@@ -93,6 +107,26 @@ const send_verification = async (req, res) => {
         
     }
     
+}
+
+const verified_user = async (req, res) => {
+
+    const path = req.path
+    const verify_token = path.slice(13)
+
+    const user = await User.findOne({
+        verify_token: verify_token
+    })
+
+    user.verified = true;
+    user.save();
+
+    res.render('system/system', {
+        title: 'Verification',
+        user: user.first_name,
+
+    })
+
 }
 
 const login_index = (req, res) => {
@@ -153,4 +187,5 @@ module.exports = {
     test_auth,
     check_user,
     send_verification,
+    verified_user,
 }
