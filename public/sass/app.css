@@ -10,6 +10,17 @@ body {
   font-family: 'Bebas Neue', cursive;
 }
 
+.danger-empty {
+  margin: auto auto;
+  text-align: center;
+  font-size: 2rem;
+  background-color: #e0474c;
+  width: 50%;
+  height: auto;
+  border: 2px black solid;
+  border-radius: 5rem;
+}
+
 #myVideo {
   position: relative;
   width: 100%;
@@ -409,17 +420,23 @@ body {
   width: calc(100% - 4rem);
   height: calc(100% - 8rem);
   grid-gap: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.pages .container-inner .line {
+.pages .container-inner .page-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50%;
   height: 100%;
-  grid-gap: 30px;
 }
 
 .pages .container footer {

@@ -21,12 +21,15 @@
             width: calc(100% - 4rem);
             height: calc(100% - 8rem);
             grid-gap: 30px;
+            align-items: center;
+            
 
-            .line {
+            .page-container {
                 display: flex;
                 justify-content: center;
+                align-items: center;
+                width: 50%;
                 height: 100%;
-                grid-gap: 30px;
 
             }
 

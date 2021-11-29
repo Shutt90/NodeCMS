@@ -15,3 +15,15 @@ body {
     box-sizing: border-box;
     font-family: 'Bebas Neue', cursive;
 }
+
+.danger-empty {
+    margin: auto auto;
+    text-align: center;
+    font-size: 2rem;
+    background-color: #e0474c;
+    width: 50%;
+    height: auto;
+    border: 2px black solid;
+    border-radius: 5rem;
+
+}
