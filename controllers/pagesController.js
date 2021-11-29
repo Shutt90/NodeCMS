@@ -14,6 +14,12 @@ const pages_index = (req, res) => {
 
 }
 
+const pages_create = (req, res) => {
+    res.render('admin/pages/create', {
+        title: 'Create Page',
+    })
+}
+
 const pages_store = async (req, res) => {
 
     const when_no_anchor = () => {
@@ -40,5 +46,6 @@ const pages_store = async (req, res) => {
 
 module.exports = {
     pages_index,
-    pages_store
+    pages_store,
+    pages_create,
 }

@@ -7,17 +7,21 @@
     <h1 class="title"><%=title%></h1>
     
     <div class="container-inner">
+        <a href="/pages/create">
+            Create new Page
+        </a>
+
         <div class="page-container">
 
             <% if (pages.length > 0 ) { %>
                 <% pages.forEach(page => {%>
-                    
-                    <h3><%=page.title%></h3>
-                    
-                    <a class="go-link" href="<%=page.link%>">
-                        <h5>Go to...</h5>
-                        <img src="images/icons/icons7-forward-48">
-                    </a>
+                    <div class="page-length">
+                        <h3><%=page.name%></h3>
+                        
+                        <a class="go-link" href="<%=page.link%>">
+                            <img src="/images/icons/icons8-forward-48.png">
+                        </a>
+                    </div>
 
                 <% }) %>
             <% } else { %>

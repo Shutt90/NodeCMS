@@ -8,7 +8,7 @@ const secrets = require('./secrets');
 const app = express();
 const con = 'mongodb+srv://tester:zP1Ucfu0RYDeiwgr@nodecms.bp90q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
-app.use(express.static('public'))
+app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true })) //accepting form data
 
 app.set('view engine', 'ejs')

@@ -6,6 +6,7 @@ const pagesController = require('../controllers/pagesController');
 router.get('/dashboard', dashboardController.dashboard_index);
 
 router.get('/pages', pagesController.pages_index);
-router.post('/pages', pagesController.pages_store);
+router.get('/pages/create', pagesController.pages_create)
+router.post('/pages/create', pagesController.pages_store);
 
 module.exports = router
