@@ -27,9 +27,10 @@ const register_store = async (req, res) => {
 
         })
 
-        await user.save().catch(err => {
-            console.log(err)
-            if ( err.code == 11000 ) {
+        try {
+            await user.save()
+        } catch(err) {
+            if (err.code == 11000) {
                 res.render('system/system', {
                     title: 'Ooops',
                     message: 'Ooops',
@@ -38,9 +39,18 @@ const register_store = async (req, res) => {
                     link: '/register',
                     linkMessage: 'Go back'
                 });
-                return;
+
+                return console.log('Duplicate Entry');
+            } else {
+                console.error(err)
             }
-        });
+        }
+
+        try {
+            await send_verification(undefined, user.verify_token, user.email)
+        } catch(err) {
+            console.error(err)
+        }
 
         res.status(201).render('system/system', {
             title: 'Registration',
@@ -51,11 +61,8 @@ const register_store = async (req, res) => {
             linkMessage: null
         });
 
-        await send_verification(undefined, user.verify_token, user.email);
-
-        
-    } catch(error) {
-        console.log(error)
+    } catch(err) {
+        console.log(err)
 
     } 
 }
@@ -96,6 +103,8 @@ const send_verification = async (result, token, usersEmail) => {
         }
 
         const mailInfo = await transporter.sendMail(mailOptions)
+
+        console.log(mailInfo)
     
         if(mailInfo != null || mailInfo != undefined) {
             if (mailInfo.envelope.to[0] === usersEmail) {
