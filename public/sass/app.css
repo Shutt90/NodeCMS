@@ -306,7 +306,7 @@ body {
   max-height: auto;
 }
 
-.nav-container nav li {
+.nav-container nav a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -321,6 +321,8 @@ body {
   list-style: none;
   text-align: right;
   margin: 0 auto;
+  color: #E739F5;
+  text-decoration: none;
 }
 
 .dashboard {

@@ -10,10 +10,12 @@ const pageSchema = new Schema ({
     position: {
         type: String,
         required: true,
+        default: 99,
+
     },
     anchor: {
         type: String,
-        require: true,
+        required: true,
     },
 }, {  timestamps: true });
 
