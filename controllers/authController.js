@@ -4,6 +4,10 @@ const nodemailer = require('nodemailer');
 const secrets = require('../secrets');
 const { v4: uuidv4 } = require('uuid');
 
+function toLower(str) {
+    return str.toLowerCase();
+}
+
 const register_index = (req, res) => {
     res.render('auth/register', {title: 'Register'})
 }
@@ -13,13 +17,15 @@ const register_store = async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
         const verify_token = uuidv4();
 
+
+
         const user = new User({
-            first_name: req.body.first_name,
-            surname: req.body.surname,
-            email: req.body.email,
+            first_name: toLower(req.body.first_name),
+            surname: toLower(req.body.surname),
+            email: toLower(req.body.email),
             username: req.body.username,
             addnumber: req.body.addnumber,
-            addstreet: req.body.addstreet,
+            addstreet: toLower(req.body.addstreet),
             addpostcode: req.body.addpostcode,
             contact: req.body.contact,
             password: hashedPassword,
@@ -165,7 +171,7 @@ const login_index = (req, res) => {
 
 const login_auth = async (req, res) => {
 
-    const email = req.body.email;
+    const email = toLower(req.body.email);
     const password = req.body.password;
     
     const success = await check_user(email, password);
