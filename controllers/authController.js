@@ -40,7 +40,7 @@ const register_store = async (req, res) => {
                 res.render('system/system', {
                     title: 'Ooops',
                     message: 'Ooops',
-                    greeting: "We currently already have a user with that email",
+                    greeting: "We already have a user with that email",
                     user: null,
                     link: '/register',
                     linkMessage: 'Go back'
@@ -175,6 +175,7 @@ const login_auth = async (req, res) => {
     const password = req.body.password;
     
     const success = await check_user(email, password);
+    console.log(success)
 
     if(success) {
         await check_verified(res, email)
