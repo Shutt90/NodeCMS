@@ -1,4 +1,4 @@
-const Page = require('../models/page')
+const Page = require('../models/page');
 
 const pages_index = (req, res) => {
 
