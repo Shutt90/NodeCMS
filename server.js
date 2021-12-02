@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+var methodOverride = require('method-override');
 const homeRoute = require('./routes/homeRoutes');
 const userRoute = require('./routes/userRoutes');
 const adminRoute = require('./routes/adminRoutes');
@@ -10,6 +11,8 @@ const con = 'mongodb+srv://tester:zP1Ucfu0RYDeiwgr@nodecms.bp90q.mongodb.net/myF
 
 app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true })) //accepting form data
+app.use(methodOverride('_method'))
+
 
 app.set('view engine', 'ejs')
 

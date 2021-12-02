@@ -16,9 +16,11 @@
             <% if (pages.length > 0 ) { %>
                 <% pages.forEach(page => {%>
                     <div class="page-length">
-                        <h3><%=page.name%></h3>
+                        <a href="/pages/edit/<%=page.id%>">
+                            <h3><%=page.name%></h3>
+                        </a>
                         
-                        <a class="go-link" href="<%=page.link%>">
+                        <a class="go-link" href="<%=page.anchor%>">
                             <img src="/images/icons/icons8-forward-48.png">
                         </a>
                     </div>

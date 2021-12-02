@@ -32,6 +32,7 @@ const pages_store = async (req, res) => {
 
     const page = new Page({
         name: req.body.name,
+        content: req.body.content,
         anchor: when_no_anchor()
     })
 
@@ -44,8 +45,42 @@ const pages_store = async (req, res) => {
 
 }
 
+const pages_edit = (req, res) => {
+    const id = req.params.id;
+    Page.findById(id)
+    .then(result => {
+        res.render('admin/pages/edit', {
+            title: 'Edit Page',
+            page: result,
+        })
+    })
+
+}
+
+const pages_update = async (req, res) => {
+
+    const id = req.params.id
+
+    try {
+        await Page.findOneAndUpdate(id, {
+            name: req.body.name,
+            content: req.body.content,
+            anchor: req.body.anchor
+        })
+
+        res.redirect(200, '/pages')
+    } catch {
+        console.log(err)
+        res.send(404)
+    }
+
+}
+
+
 module.exports = {
     pages_index,
     pages_store,
     pages_create,
+    pages_edit,
+    pages_update
 }
