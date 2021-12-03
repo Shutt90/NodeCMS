@@ -303,7 +303,12 @@ body {
 }
 
 .nav-container .logo {
-  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .nav-container .logo img {
@@ -538,7 +543,6 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 2rem;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
