@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+
+<section class="internal">
+<%- include('../partials/admin-nav') %>
+
+<div class="container">
+    <h1 class="title"><%=title%></h1>
+    
+    <div class="container-inner">
+
+        <div class="settings-container">
+
+            <a class="top-tab <%= title === 'Sliders' ? "active" : "" %>" href="/settings/slider">
+                Sliders
+            </a>
+            <a class="top-tab <%= title === 'Socials' ? "active" : "" %>" href="/settings/socials">
+                Socials
+            </a>
+            <a class="top-tab <%= title === 'Profile' ? "active" : "" %>" href="/settings/profile">
+                Profile
+            </a>
+
+        </div>
+
+        <h3 class="danger-empty">Such emptyness...</h3>
+
+        <div class="gif" style="width:100%;height:0;padding-bottom:97%;position:relative;">
+            <iframe src="https://giphy.com/embed/j6aoUHK5YiJEc" width="100%" height="100%" style="position:absolute;margin-top:2rem;" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        </div>
+            
+        </div>
+
+        <%- include('../partials/footer') %>
+
+    </div>
+
+</div>
+
+</section>

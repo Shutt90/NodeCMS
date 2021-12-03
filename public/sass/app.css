@@ -21,6 +21,11 @@ body {
   border-radius: 5rem;
 }
 
+iframe {
+  max-height: 500px;
+  width: auto;
+}
+
 #myVideo {
   position: relative;
   width: 100%;
@@ -403,7 +408,7 @@ body {
   right: 10px;
 }
 
-.pages {
+.internal {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -412,19 +417,19 @@ body {
   background: linear-gradient(45deg, #E739F5, #61D9DE);
 }
 
-.pages .container {
+.internal .container {
   width: 100%;
   height: 100vh;
 }
 
-.pages .container .title {
+.internal .container .title {
   text-align: center;
   width: 100%;
   font-size: 3rem;
   margin: 1rem 0;
 }
 
-.pages .container-inner {
+.internal .container-inner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -441,7 +446,19 @@ body {
           align-items: center;
 }
 
-.pages .container-inner .page-container {
+.internal .container-inner .gif {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  max-height: 500px;
+  width: auto;
+  margin: auto;
+}
+
+.internal .container-inner .page-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -459,7 +476,7 @@ body {
   height: 100%;
 }
 
-.pages .container-inner .page-container .page-length {
+.internal .container-inner .page-container .page-length {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -475,7 +492,7 @@ body {
   background-color: white;
 }
 
-.pages .container-inner .page-container .page-length a {
+.internal .container-inner .page-container .page-length a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -487,11 +504,28 @@ body {
           justify-content: space-evenly;
 }
 
-.pages .container-inner .page-container .page-length a img {
+.internal .container-inner .page-container .page-length a img {
   padding-left: 0.5rem;
 }
 
-.pages .container footer {
+.internal .container-inner .settings-container .top-tab {
+  width: 50px;
+  height: 20px;
+  background: -webkit-gradient(linear, left bottom, right top, from(#f2f2f2), to(black));
+  background: linear-gradient(to top right, #f2f2f2, black);
+  padding: 1rem;
+  border-radius: 2rem 2rem 0 0;
+  border-bottom: 2px black solid;
+  color: #61D9DE;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
+.internal .container-inner .settings-container .top-tab .active {
+  color: red;
+}
+
+.internal .container footer {
   position: absolute;
   bottom: 0;
   right: 10px;
