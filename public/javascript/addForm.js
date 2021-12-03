@@ -14,7 +14,12 @@ const addForm = (parentId, type) => {
     } else if(type === "textarea") {
         const textarea = document.createElement('textarea')
         textarea.id = `contentbox-${count}`
-        textarea.classList.add = `contentBox`
+        let getBoxes = document.querySelectorAll('.contentBox')
+        getBoxes.forEach(ele => {
+            ele.style.width = "20px"
+        })
+
+        textarea.className = 'contentBox'
         textarea.style.width = "400px";
         textarea.style.height = "300px";
         textarea.style.overflow = "hidden";
@@ -38,3 +43,30 @@ document.getElementById('addContent').addEventListener('click', function() {
     return addForm('content', 'textarea')
 }, false)
 
+
+const getCurrentContent  = (e) => {
+
+    if(e.target.classList.contains('contentBox')) {
+        
+        let getBoxes = document.querySelectorAll('.contentBox')
+        getBoxes.forEach((ele) => {
+            ele.classList.remove('active')
+        })
+
+        e.target.classList.add('active')
+
+        getBoxes.forEach((content) => {
+            
+            if(!content.classList.contains('active')) {
+                content.style.width = "20px";
+            } else {
+                content.style.width = "400px";
+            }    
+        })
+
+        e.target.classList.add('active')
+
+    }
+}
+
+window.addEventListener('click', getCurrentContent);
