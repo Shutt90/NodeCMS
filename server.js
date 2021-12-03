@@ -9,7 +9,7 @@ const adminRoute = require('./routes/adminRoutes');
 const secrets = require('./secrets');
 
 const app = express();
-const con = 'mongodb+srv://tester:zP1Ucfu0RYDeiwgr@nodecms.bp90q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const con = secrets.db;
 
 app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true })) //accepting form data

@@ -109,8 +109,6 @@ const send_verification = async (result, token, usersEmail) => {
         }
 
         const mailInfo = await transporter.sendMail(mailOptions)
-
-        console.log(mailInfo)
     
         if(mailInfo != null || mailInfo != undefined) {
             if (mailInfo.envelope.to[0] === usersEmail) {
