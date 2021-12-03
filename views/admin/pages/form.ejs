@@ -1,14 +1,17 @@
     <label for="name">Title:</label>
-    <input type="text" name="name" id="pagesname" placeholder="<%=page.name%>">
+    <input type="text" name="name" id="pagesname" placeholder="<%= locals.page != undefined ? page.name : "" %>">
     <label for="content">Content:</label>
-    <textarea name="content" id="pagescontent" placeholder="<%=page.content%>"></textarea>
+    <div class="content">
+        <textarea name="content" id="pagescontent" placeholder="<%= locals.page != undefined ? page.content : "" %>"></textarea>
+        <img src="/images/icons/icons8-plus-64.png">
+    </div>
     <label for="name">Link (defaults to title if left blank):</label>
-    <input type="text" name="anchor" id="pagesanchor" placeholder="<%=page.anchor%>">
+    <input type="text" name="anchor" id="pagesanchor" placeholder="<%= locals.page != undefined ? page.anchor : "" %>">
     <label for="name">Image:</label>
     <input type="file" name="image" id="pagesupload">
-    <% if (page.image) { %>
-        <img src="<%=page.image%>" height="100" width="100" id="pagesimage">
-    <% } else {%>
-        <img src="/images/no-image.jpg" height="100" width="100" id="pagesimage">
+    <% if(locals.page != undefined && locals.page.image != "") { %>
+        <img src="<%= page.image %>" height="100" width="100" id="pagesimage">
+    <% } else { %>
+        <img src="/images/no-image.jpg" height="100" width="100" id="pagesplaceholderimg">
     <% } %>
     <input class="submit" type="submit">

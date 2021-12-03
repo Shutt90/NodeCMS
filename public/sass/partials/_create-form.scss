@@ -32,6 +32,18 @@
                 align-items: center;
                 margin: auto;
                 min-width: 300px;
+
+                .content {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    textarea {
+                        height: 300px;
+                        width: 500px;
+                    }
+
+                }
         
                 input {
                     position: relative;

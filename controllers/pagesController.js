@@ -62,17 +62,20 @@ const pages_update = async (req, res) => {
     const id = req.params.id
 
     try {
-        await Page.findOneAndUpdate(id, {
+        await Page.findByIdAndUpdate(id, {
             name: req.body.name,
             content: req.body.content,
             anchor: req.body.anchor
         })
+        console.log("req.body", page)
 
-        res.redirect(200, '/pages')
     } catch {
         console.log(err)
         res.send(404)
     }
+
+    return res.redirect(200, '/pages')
+
 
 }
 

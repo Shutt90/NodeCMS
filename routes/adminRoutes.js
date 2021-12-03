@@ -9,6 +9,6 @@ router.get('/pages', pagesController.pages_index);
 router.get('/pages/create', pagesController.pages_create)
 router.post('/pages/create', pagesController.pages_store);
 router.get('/pages/edit/:id', pagesController.pages_edit);
-router.put('/pages/edit/:id', pagesController.pages_update);
+router.post('/pages/edit/:id', pagesController.pages_update);
 
 module.exports = router
