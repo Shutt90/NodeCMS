@@ -1,9 +1,9 @@
     <label for="name">Title:</label>
     <input type="text" name="name" id="pagesname" placeholder="<%= locals.page != undefined ? page.name : "" %>">
     <label for="content">Content:</label>
-    <div class="content">
-        <textarea name="content" id="pagescontent" placeholder="<%= locals.page != undefined ? page.content : "" %>"></textarea>
-        <img src="/images/icons/icons8-plus-64.png">
+    <div id="content" class="content">
+        <textarea name="content-box1" id="pagescontent" placeholder="<%= locals.page != undefined ? page.content : "" %>"></textarea>
+        <img id="addContent" src="/images/icons/icons8-plus-64.png">
     </div>
     <label for="name">Link (defaults to title if left blank):</label>
     <input type="text" name="anchor" id="pagesanchor" placeholder="<%= locals.page != undefined ? page.anchor : "" %>">
