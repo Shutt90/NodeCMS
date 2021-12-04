@@ -30,22 +30,19 @@ const pages_store = async (req, res) => {
     //     }
     // }
 
-
-    if(req.files.images != "") {
-
+    if(req.files[0].path != "" && req.files[0].path != undefined) {
 
         try {
 
-            console.log(req.files)
+            console.log()
 
             const page = await new Page({
                 name: req.body.name,
                 content: req.body.content,
                 anchor: req.body.anchor,
-                images: req.files.images,
+                images: req.files[0].path,
             })
 
-            console.log(page)
 
             await page.save()
 
