@@ -1,15 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
-const path = require('path');
 var methodOverride = require('method-override');
 const homeRoute = require('./routes/homeRoutes');
 const userRoute = require('./routes/userRoutes');
 const adminRoute = require('./routes/adminRoutes');
 const secrets = require('./secrets');
-
 const app = express();
 const con = secrets.db;
+
+app.use(multer({'dest': './public/uploads'}).single('image'));
 
 app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true })) //accepting form data

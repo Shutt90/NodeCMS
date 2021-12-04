@@ -30,18 +30,22 @@ const pages_store = async (req, res) => {
         }
     }
 
-    const page = new Page({
-        name: req.body.name,
-        content: req.body.content,
-        anchor: when_no_anchor()
-    })
 
     try {
+        const page = await new Page({
+            name: await req.body.name,
+            content: await req.body.content,
+            anchor: await when_no_anchor(),
+            image: await req.file,
+        })
+
         await page.save()
-        
+
     } catch(err) {
         console.error(err)
     }
+
+    console.log('New Page Uploaded')
 
 }
 

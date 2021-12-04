@@ -9,8 +9,8 @@
     <input type="text" name="anchor" id="pagesanchor" placeholder="<%= locals.page != undefined ? page.anchor : "" %>">
     <label for="name">Image:</label>
     <input type="file" name="image" id="pagesupload">
-    <% if(locals.page != undefined && locals.page.image != "") { %>
-        <img src="<%= page.image %>" height="100" width="100" id="pagesimage">
+    <% if(locals.page != undefined && locals.page.images != "") { %>
+        <img src="<%= page.images %>" height="100" width="100" id="pagesimage">
     <% } else { %>
         <img src="/images/no-image.jpg" height="100" width="100" id="pagesplaceholderimg">
     <% } %>
