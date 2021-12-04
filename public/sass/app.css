@@ -26,6 +26,28 @@ iframe {
   width: auto;
 }
 
+.user-nav {
+  background-color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  z-index: 99;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.user-nav .nav-items {
+  font-size: 2rem;
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+}
+
 #myVideo {
   position: relative;
   width: 100%;

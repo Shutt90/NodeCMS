@@ -1,0 +1,16 @@
+.user-nav {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    z-index: 99;
+    justify-content: center;
+
+    .nav-items {
+        font-size: 2rem;
+        color: white;
+        text-decoration: none;
+        margin: 0 1rem;
+
+    
+    }
+}
