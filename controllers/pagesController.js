@@ -22,29 +22,32 @@ const pages_create = (req, res) => {
 
 const pages_store = async (req, res) => {
 
-    const when_no_anchor = () => {
-        if(req.body.anchor === "") {
-            return req.body.name
-        } else {
-            return req.body.anchor
-        }
-    }
+    // const when_no_anchor = () => {
+    //     if(req.body.anchor === "") {
+    //         return req.body.name
+    //     } else {
+    //         return req.body.anchor
+    //     }
+    // }
 
-    if(req.file) {
-        console.log(req.file)
+
+    if(req.files.images != "") {
+
 
         try {
+
+            console.log(req.files)
 
             const page = await new Page({
                 name: req.body.name,
                 content: req.body.content,
                 anchor: req.body.anchor,
-                image: req.file,
+                images: req.files.images,
             })
 
-            await page.save()
-            res.status(200).send('Uploaded with file')
+            console.log(page)
 
+            await page.save()
 
         } catch(err) {
             console.error(err);
@@ -68,6 +71,9 @@ const pages_store = async (req, res) => {
         }
 
     }
+
+    res.status(200).send('Uploaded with file')
+
 
 }
 

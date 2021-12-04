@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const multer = require('multer');
 var methodOverride = require('method-override');
 const homeRoute = require('./routes/homeRoutes');
 const userRoute = require('./routes/userRoutes');
