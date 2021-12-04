@@ -99,7 +99,7 @@ const pages_update = async (req, res) => {
         console.log("req.body", page)
 
     } catch {
-        console.log(err)
+        console.error(err)
         res.send(404)
     }
 
@@ -108,11 +108,30 @@ const pages_update = async (req, res) => {
 
 }
 
+const pages_delete = async (req, res) => {
+
+    const id = req.params.id
+    backURL=req.header('Referer') || '/';
+
+
+    try {
+        await Page.deleteOne({id: id})
+        res.redirect(backURL).sendStatus(200)
+
+    } catch(err) {
+        console.error(err)
+    }
+
+
+    
+}
+
 
 module.exports = {
     pages_index,
     pages_store,
     pages_create,
     pages_edit,
-    pages_update
+    pages_update,
+    pages_delete
 }

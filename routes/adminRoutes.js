@@ -13,6 +13,7 @@ router.get('/pages/create', pagesController.pages_create)
 router.post('/pages/create', upload.array('images'), pagesController.pages_store);
 router.get('/pages/edit/:id', pagesController.pages_edit);
 router.post('/pages/edit/:id', upload.single('images'), pagesController.pages_update);
+router.post('/pages/delete/:id', upload.none(), pagesController.pages_delete);
 router.get('/settings', settingsController.settings_index);
 
 module.exports = router
