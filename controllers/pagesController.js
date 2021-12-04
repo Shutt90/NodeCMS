@@ -22,13 +22,13 @@ const pages_create = (req, res) => {
 
 const pages_store = async (req, res) => {
 
-    // const when_no_anchor = () => {
-    //     if(req.body.anchor === "") {
-    //         return req.body.name
-    //     } else {
-    //         return req.body.anchor
-    //     }
-    // }
+    const when_no_anchor = () => {
+        if(req.body.anchor === "") {
+            return req.body.name
+        } else {
+            return req.body.anchor
+        }
+    }
 
     if(req.files[0].path != "" && req.files[0].path != undefined) {
 
@@ -39,7 +39,7 @@ const pages_store = async (req, res) => {
             const page = await new Page({
                 name: req.body.name,
                 content: req.body.content,
-                anchor: req.body.anchor,
+                anchor: when_no_anchor(),
                 images: req.files[0].path,
             })
 
@@ -113,10 +113,9 @@ const pages_delete = async (req, res) => {
     const id = req.params.id
     backURL=req.header('Referer') || '/';
 
-
     try {
         await Page.deleteOne({id: id})
-        res.redirect(backURL).sendStatus(200)
+        res.redirect(backURL)
 
     } catch(err) {
         console.error(err)
