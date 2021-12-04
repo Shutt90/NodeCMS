@@ -9,8 +9,6 @@ const secrets = require('./secrets');
 const app = express();
 const con = secrets.db;
 
-app.use(multer({'dest': './public/uploads'}).single('image'));
-
 app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true })) //accepting form data
 app.use(methodOverride('_method'))

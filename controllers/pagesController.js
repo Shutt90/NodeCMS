@@ -30,22 +30,44 @@ const pages_store = async (req, res) => {
         }
     }
 
+    if(req.file) {
+        console.log(req.file)
 
-    try {
-        const page = await new Page({
-            name: await req.body.name,
-            content: await req.body.content,
-            anchor: await when_no_anchor(),
-            image: await req.file,
-        })
+        try {
 
-        await page.save()
+            const page = await new Page({
+                name: req.body.name,
+                content: req.body.content,
+                anchor: req.body.anchor,
+                image: req.file,
+            })
 
-    } catch(err) {
-        console.error(err)
+            await page.save()
+            res.status(200).send('Uploaded with file')
+
+
+        } catch(err) {
+            console.error(err);
+        }
+
+    } else {
+
+        try {
+
+            const page = await new Page({
+                name: req.body.name,
+                content: req.body.content,
+                anchor: req.body.anchor,
+            })
+
+            await page.save()
+            res.status(200).send('Uploaded without file')
+                
+        }  catch(err) {
+            console.error(err)
+        }
+
     }
-
-    console.log('New Page Uploaded')
 
 }
 
