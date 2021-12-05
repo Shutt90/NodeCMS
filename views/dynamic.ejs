@@ -1,14 +1,20 @@
 <%- include('./partials/header.ejs') %>
-<%- include('./partials/nav.ejs') %>
+<section class="dynamic">
+    <%- include('./partials/nav.ejs') %>
 
+    <div class="title">
+        <h1 class="title-txt"><%=page.name%></h1>
+    </div>
+    <div class="content">
+        <p class="content-text"><%=page.content%></p>
 
-    <video autoplay muted loop id="myVideo">
-        <source src="images/bg-vid.mp4" type="video/mp4">      
-    </video>
-    <div class="text">
-        <h1 class="title">Welcome to my CMS built with Node.js</h1>
-        <h3 class="subtitle">Built by Liam Pugh</h3>
+        <% if (locals.page.images != "" && locals.page.images != undefined) { %>
+            <img class="content-image" src="<% page.images %>">
+        <% } else { %>
+            <img class="content-image" src="https://images.hdqwalls.com/wallpapers/the-batman-2022-5k-q8.jpg">
+        <% } %>
     </div>
 
+</section>
 
 <%- include('./partials/footer.ejs') %>

@@ -19,14 +19,14 @@ const home_index = async (req, res) => {
 
 const home_dynamic = async (req, res) => {
     try {
-
-        console.log(req.params)
-
         let name = req.params.name;
 
         const currentPage = await Page.findOne(name)
 
-        res.send(200)
+        res.render('dynamic', {
+            title: currentPage.title,
+            page: currentPage,
+        })
 
     } catch(err) {
         console.error(err)
