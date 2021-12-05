@@ -20,7 +20,7 @@ router.get('/news', upload.none(), newsController.news_index);
 router.post('/news/create', upload.array('images'), newsController.news_store);
 router.get('/news/edit/:id', newsController.news_edit);
 router.post('/news/edit/:id', upload.single('images'), newsController.news_update);
-router.post('/news/delete/:id', upload.none(), newsController.pages_delete);
+router.post('/news/delete/:id', upload.none(), newsController.news_delete);
 
 router.get('/settings', settingsController.settings_index);
 
