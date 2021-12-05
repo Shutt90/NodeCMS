@@ -1,4 +1,5 @@
 const Page = require('../models/page');
+const faker = require('faker');
 
 const pages_index = (req, res) => {
 
@@ -139,6 +140,29 @@ const pages_deleteAll = async(req, res) => {
 
 }
 
+const pages_seed = async (req, res) => {
+    
+
+
+    const slug = faker.lorem.word(3).replace(/\s/g, "")
+
+    try {
+        const createPages = await new Page({
+            name: faker.lorem.words(3),
+            content: faker.lorem.paragraphs(2),
+            anchor: slug,
+            images: faker.image.imageUrl(2),
+        })
+
+        await createPages.save()
+        
+    } catch(err) {
+        console.error(err);
+    }
+    
+    res.status(200).redirect('/pages/');
+}
+
 
 module.exports = {
     pages_index,
@@ -147,5 +171,6 @@ module.exports = {
     pages_edit,
     pages_update,
     pages_delete,
-    pages_deleteAll
+    pages_deleteAll,
+    pages_seed,
 }

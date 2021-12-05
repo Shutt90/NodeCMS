@@ -11,11 +11,20 @@
             Create new Page
         </a>
 
+        <div class="testing-button">
         <form method="POST" action="/pages/deleteall">
             <button type="submit" onclick="confirm('Delete all pages?');">
                 <img src="/images/icons/icons8-skull-crossbones-48.png">
             </button>
         </form>
+
+        <form method="POST" action="/pages/seed">
+            <button type="submit" onclick="confirm('Migrate a page?');">
+                <img src="/images/icons/icons8-one-page-48.png">
+            </button>
+        </form>
+
+    </div>
 
         <div class="page-container">
 
