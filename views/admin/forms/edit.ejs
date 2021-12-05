@@ -10,7 +10,7 @@
 
             <form class="form" method="POST" action="/<%=title%>/edit/<%= `${title}`.id %>" enctype="multipart/form-data">
             
-            <%- include('./form.ejs') %>
+                <%- include(`./${title}/form.ejs`) %>
         
             </form>
 
