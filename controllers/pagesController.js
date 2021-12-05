@@ -127,6 +127,18 @@ const pages_delete = async (req, res) => {
     
 }
 
+const pages_deleteAll = async(req, res) => {
+
+    try {
+        await Page.deleteMany()
+    } catch(err) {
+        console.error(err)
+    }
+
+    res.send('Bye bye pages...')
+
+}
+
 
 module.exports = {
     pages_index,
@@ -134,5 +146,6 @@ module.exports = {
     pages_create,
     pages_edit,
     pages_update,
-    pages_delete
+    pages_delete,
+    pages_deleteAll
 }

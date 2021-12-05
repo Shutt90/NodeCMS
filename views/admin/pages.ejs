@@ -11,6 +11,12 @@
             Create new Page
         </a>
 
+        <form method="POST" action="/pages/deleteall">
+            <button type="submit" onclick="confirm('Delete all pages?');">
+                <img src="/images/icons/icons8-skull-crossbones-48.png">
+            </button>
+        </form>
+
         <div class="page-container">
 
             <% if (pages.length > 0 ) { %>
