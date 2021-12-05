@@ -15,8 +15,8 @@ const pages_index = (req, res) => {
 }
 
 const pages_create = (req, res) => {
-    res.render('admin/pages/create', {
-        title: 'Create Page',
+    res.render('admin/forms/create', {
+        title: 'pages',
     })
 }
 
@@ -75,8 +75,8 @@ const pages_edit = (req, res) => {
     const id = req.params.id;
     Page.findById(id)
     .then(result => {
-        res.render('admin/pages/edit', {
-            title: 'Edit Page',
+        res.render('admin/forms/edit', {
+            title: 'pages',
             page: result,
         })
     })

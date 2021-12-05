@@ -8,7 +8,7 @@
 
         <div class="container-inner">
 
-            <form class="form" method="POST" action="/pages/create" enctype="multipart/form-data">
+            <form class="form" method="POST" action="/<%=title%>/edit/<%= `${title}`.id %>" enctype="multipart/form-data">
             
             <%- include('./form.ejs') %>
         
@@ -18,6 +18,6 @@
 
         </div>
 
-    </div>
+    </div> 
 
 </section>

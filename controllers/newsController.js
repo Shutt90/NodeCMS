@@ -13,8 +13,8 @@ const news_index = (req, res) => {
 }
 
 const news_create = (req, res) => {
-    res.render('admin/news/create', {
-        title: 'Create News',
+    res.render('admin/forms/create', {
+        title: 'news',
     })
 }
 
@@ -64,8 +64,8 @@ const news_edit = (req, res) => {
     const id = req.params.id;
     News.findById(id)
     .then(result => {
-        res.render('admin/news/edit', {
-            title: 'Edit News',
+        res.render('admin/forms/edit', {
+            title: 'news',
             news: result,
         })
     })
@@ -113,6 +113,7 @@ const news_delete = async (req, res) => {
 
 module.exports = {
     news_index,
+    news_create,
     news_store,
     news_edit,
     news_update,
