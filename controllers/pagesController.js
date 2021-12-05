@@ -6,7 +6,7 @@ const pages_index = (req, res) => {
     .then((result) => {
 
         res.render('admin/pages', {
-            title: "Pages",
+            title: "pages",
             pages: result,
         })
 
@@ -33,9 +33,6 @@ const pages_store = async (req, res) => {
     if(req.files[0].path != "" && req.files[0].path != undefined) {
 
         try {
-
-            console.log()
-
             const page = await new Page({
                 name: req.body.name,
                 content: req.body.content,
@@ -96,11 +93,10 @@ const pages_update = async (req, res) => {
             content: req.body.content,
             anchor: req.body.anchor
         })
-        console.log("req.body", page)
 
     } catch {
         console.error(err)
-        res.send(404)
+        res.sendStatus(404)
     }
 
     return res.redirect(200, '/pages')
