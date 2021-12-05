@@ -17,6 +17,25 @@ const home_index = async (req, res) => {
 
 }
 
+const home_dynamic = async (req, res) => {
+    try {
+
+        console.log(req.params)
+
+        let name = req.params.name;
+
+        const currentPage = await Page.findOne(name)
+
+        res.send(200)
+
+    } catch(err) {
+        console.error(err)
+    }
+
+}
+
+
 module.exports = {
     home_index,
+    home_dynamic,
 }

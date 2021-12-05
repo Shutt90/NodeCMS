@@ -23,14 +23,20 @@ const pages_create = (req, res) => {
 const pages_store = async (req, res) => {
 
     const when_no_anchor = () => {
-        if(req.body.anchor === "") {
+        const anchor = req.body.anchor
+        if(anchor === "") {
             return req.body.name
         } else {
-            return req.body.anchor
+            return anchor
         }
+
     }
 
-    if(req.files[0].path != "" && req.files[0].path != undefined) {
+    const slug = when_no_anchor().replace(/\s/g, "")
+
+    console.log(slug)
+
+    if(req.files.count > 0) {
 
         try {
             const page = await new Page({
