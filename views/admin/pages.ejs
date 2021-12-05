@@ -11,20 +11,52 @@
             Create new Page
         </a>
 
-        <div class="testing-button">
-        <form method="POST" action="/pages/deleteall">
-            <button type="submit" onclick="confirm('Delete all pages?');">
-                <img src="/images/icons/icons8-skull-crossbones-48.png">
-            </button>
-        </form>
+        <div class="testing-buttons">
+            <form id="addPage" method="POST" action="/pages/seed">
+                <button type="submit" onclick="confirm('Migrate a page?');">
+                    <img src="/images/icons/icons8-one-page-48.png">
+                </button>
+            </form>
 
-        <form method="POST" action="/pages/seed">
-            <button type="submit" onclick="confirm('Migrate a page?');">
-                <img src="/images/icons/icons8-one-page-48.png">
-            </button>
-        </form>
+            <form id="deleteAll" method="POST" action="/pages/deleteall">
+                <button type="submit" onclick="confirm('Delete all pages?');">
+                    <img src="/images/icons/icons8-skull-crossbones-48.png">
+                </button>
+            </form>
+        </div>
+        <div class="hidden">
+            <h3 id="page-text" class="hidden-text">
+                <span class="flying-letter">1</span>
+                <span class="flying-letter">&nbsp;</span>
+                <span class="flying-letter">N</span>
+                <span class="flying-letter">E</span>
+                <span class="flying-letter">W</span>
+                <span class="flying-letter">&nbsp;</span>
+                <span class="flying-letter">P</span>
+                <span class="flying-letter">A</span>
+                <span class="flying-letter">G</span>
+                <span class="flying-letter">E</span>
+            </h3>
+            <h3 id="delete-text" class="hidden-text">
+                <span class="flying-letter">D</span>
+                <span class="flying-letter">E</span>
+                <span class="flying-letter">L</span>
+                <span class="flying-letter">E</span>
+                <span class="flying-letter">T</span>
+                <span class="flying-letter">E</span>
+                <span class="flying-letter">&nbsp;</span>
+                <span class="flying-letter">A</span>
+                <span class="flying-letter">L</span>
+                <span class="flying-letter">L</span>
+                <span class="flying-letter">&nbsp;</span>
+                <span class="flying-letter">P</span>
+                <span class="flying-letter">A</span>
+                <span class="flying-letter">G</span>
+                <span class="flying-letter">E</span>
+                <span class="flying-letter">S</span>
+            </h3>
+        </div>
 
-    </div>
 
         <div class="page-container">
 

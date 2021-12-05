@@ -18,6 +18,7 @@ const pages_index = (req, res) => {
 const pages_create = (req, res) => {
     res.render('admin/forms/create', {
         title: 'pages',
+        create: true,
     })
 }
 
@@ -84,6 +85,7 @@ const pages_edit = (req, res) => {
     .then(result => {
         res.render('admin/forms/edit', {
             title: 'pages',
+            create: false,
             page: result,
         })
     })

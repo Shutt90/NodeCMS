@@ -12,6 +12,8 @@ app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true })) //accepting form data
 app.use(methodOverride('_method'))
 
+app.locals.baseURL = "http://localhost:5000/"
+
 app.set('view engine', 'ejs')
 
 mongoose.connect(con)

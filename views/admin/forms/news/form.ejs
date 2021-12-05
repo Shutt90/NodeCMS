@@ -5,13 +5,17 @@
 <div id="content" class="content">
     <textarea name="content-box1" class="contentBox" id="pagescontent" placeholder="<%= locals.page != undefined ? page.content : "" %>"></textarea>
 </div>
+
+<h1><%= create %></h1>
 <label for="name">Link (defaults to title if left blank):</label>
 <input type="text" name="anchor" id="pagesanchor" placeholder="<%= locals.page != undefined ? page.anchor : "" %>">
 <label for="name">Image:</label>
 <input type="file" name="images" id="pagesupload" multiple>
-<% if(locals.page != undefined && locals.page.images != "") { %>
-    <img src="<%= page.images %>" height="100" width="100" id="pagesimage">
-<% } else { %>
-    <img src="/images/no-image.jpg" height="100" width="100" id="pagesplaceholderimg">
+<% if(create === false) { %>
+    <% if(locals.page != undefined && locals.page.images != "") { %>
+        <img src="<%= page.images %>" height="100" width="100" id="pagesimage">
+    <% } else { %>
+        <img src="/images/no-image.jpg" height="100" width="100" id="pagesplaceholderimg">
+    <% } %>
 <% } %>
 <input class="submit" type="submit">

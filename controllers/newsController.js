@@ -15,6 +15,8 @@ const news_index = (req, res) => {
 const news_create = (req, res) => {
     res.render('admin/forms/create', {
         title: 'news',
+        create: true,
+
     })
 }
 
@@ -66,6 +68,8 @@ const news_edit = (req, res) => {
     .then(result => {
         res.render('admin/forms/edit', {
             title: 'news',
+            create: false,
+
             news: result,
         })
     })

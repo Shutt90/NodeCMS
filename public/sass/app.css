@@ -513,6 +513,21 @@ iframe {
   margin: auto;
 }
 
+.internal .container-inner .testing-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.internal .container-inner .hidden {
+  display: block;
+  text-align: center;
+}
+
+.internal .container-inner .hidden-text .flying-letter {
+  opacity: 0;
+}
+
 .internal .container-inner .page-container {
   display: -webkit-box;
   display: -ms-flexbox;

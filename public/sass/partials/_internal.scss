@@ -33,6 +33,23 @@
                 width: auto;
                 margin: auto;
             }
+
+            .testing-buttons {
+                display: flex;
+
+            }
+
+            .hidden {
+                display: block;
+                text-align: center;
+
+                &-text {
+
+                    .flying-letter {
+                        opacity: 0;
+                    }
+                }
+            }
             
 
             .page-container {

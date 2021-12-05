@@ -1,4 +1,4 @@
-const goPage = document.getElementById('go-page');
+const goPage = document.querySelector('#go-page');
 
 var tl = gsap.to(goPage, {
             x: "5px",
@@ -20,3 +20,39 @@ goPage.addEventListener('mouseleave', function() {
 
 })
 
+
+const newPage = document.getElementById('addPage')
+const deleteAll = document.getElementById('deleteAll')
+
+
+const appearingText = gsap.to('#page-text .flying-letter', {
+    opacity: 1,
+    stagger: 0.05,
+    duration: 0.1,
+    paused: true,
+
+})
+
+const appearingDelete = gsap.to('#delete-text .flying-letter', {
+    opacity: 1,
+    stagger: 0.05,
+    duration: 0.1,
+    paused: true,
+
+})
+
+newPage.addEventListener('mouseenter', function() {
+    appearingText.play();
+})
+
+newPage.addEventListener('mouseleave', function() {
+    appearingText.reverse();
+})
+
+deleteAll.addEventListener('mouseenter', function() {
+    appearingDelete.play();
+})
+
+deleteAll.addEventListener('mouseleave', function() {
+    appearingDelete.reverse();
+})
