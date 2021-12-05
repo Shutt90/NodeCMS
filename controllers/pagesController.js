@@ -153,7 +153,7 @@ const pages_seed = async (req, res) => {
             name: faker.lorem.words(3),
             content: faker.lorem.paragraphs(2),
             anchor: slug,
-            images: faker.image.imageUrl(2),
+            images: faker.random.image(),
         })
 
         await createPages.save()
