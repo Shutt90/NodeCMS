@@ -19,16 +19,18 @@
                         <a href="/pages/edit/<%=page.id%>">
                             <h3><%=page.name%></h3>
                         </a>
-
-                        <form action="/pages/delete/<%=page.id%>" method="POST" >
-                            <button type="submit">
-                                <img src="/images/icons/icons8-trash-64.png">
-                            </button>
-                        </form>
-                        
-                        <a class="go-link" href="<%=page.anchor%>">
-                            <img src="/images/icons/icons8-forward-48.png">
-                        </a>
+                        <div class="right-side">
+                            <form action="/pages/delete/<%=page.id%>" method="POST" >
+                                <button type="submit">
+                                    <img src="/images/icons/icons8-trash-64.png">
+                                </button>
+                            </form>
+                            
+                            <a class="go-link" href="<%=page.anchor%>">
+                                <img id="go-page" src="/images/icons/icons8-forward-48.png">
+                                Go to...
+                            </a>
+                        </div>
                     </div>
 
                 <% }) %>
