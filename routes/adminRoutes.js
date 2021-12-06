@@ -14,7 +14,7 @@ router.get('/pages', pagesController.pages_index);
 router.get('/pages/create', pagesController.pages_create)
 router.post('/pages/create', upload.array('images'), pagesController.pages_store);
 router.get('/pages/edit/:id', pagesController.pages_edit);
-router.post('/pages/edit/:id', upload.single('images'), pagesController.pages_update);
+router.post('/pages/edit/:id', upload.array('images'), pagesController.pages_update);
 router.post('/pages/delete/:id', upload.none(), pagesController.pages_delete);
 router.post('/pages/deleteall', pagesController.pages_deleteAll);
 router.post('/pages/seed', pagesController.pages_seed);

@@ -34,22 +34,26 @@ const pages_store = async (req, res) => {
 
     }
 
-    const slug = when_no_anchor().replace(/\s/g, "")
+    const anchor = when_no_anchor()
+    const slug = anchor.replace(/\s/g, "")
 
-    console.log(slug)
-
-    if(req.files.count > 0) {
+    if(req.files.length > 0 ) {
 
         try {
             const page = await new Page({
                 name: req.body.name,
                 content: req.body.content,
-                anchor: when_no_anchor(),
-                images: req.files[0].path,
+                anchor: slug,
+                images: req.files.forEach(image => {
+                    image.path
+                }),
             })
 
 
             await page.save()
+
+            res.status(200).send('Uploaded with file')
+
 
         } catch(err) {
             console.error(err);
@@ -62,7 +66,8 @@ const pages_store = async (req, res) => {
             const page = await new Page({
                 name: req.body.name,
                 content: req.body.content,
-                anchor: req.body.anchor,
+                anchor: slug,
+
             })
 
             await page.save()
@@ -74,7 +79,6 @@ const pages_store = async (req, res) => {
 
     }
 
-    res.status(200).send('Uploaded with file')
 
 
 }
@@ -96,19 +100,56 @@ const pages_update = async (req, res) => {
 
     const id = req.params.id
 
-    try {
-        await Page.findByIdAndUpdate(id, {
-            name: req.body.name,
-            content: req.body.content,
-            anchor: req.body.anchor
-        })
+    const when_no_anchor = () => {
+        const anchor = req.body.anchor
+        if(anchor === "") {
+            return req.body.name
+        } else {
+            return anchor
+        }
 
-    } catch {
-        console.error(err)
-        res.sendStatus(404)
     }
 
-    return res.redirect(200, '/pages')
+    const anchor = when_no_anchor()
+    const slug = anchor.replace(/\s/g, "")
+
+    if(req.files.length > 0  ) {
+
+        try {
+            await Page.findByIdAndUpdate(id, {
+                name: req.body.name,
+                content: req.body.content,
+                anchor: slug
+            })
+
+            res.status(200).send('Updated without file')
+
+
+        } catch {
+            console.error(err)
+            res.sendStatus(404)
+        }
+
+    } else {
+
+        try {
+
+            const page = await new Page({
+                name: req.body.name,
+                content: req.body.content,
+                anchor: slug,
+            })
+
+            await page.save()
+            res.status(200).send('Updated without file')
+                
+        }  catch(err) {
+            console.error(err)
+        }
+
+    }
+    
+
 
 
 }
@@ -146,7 +187,7 @@ const pages_seed = async (req, res) => {
     
 
 
-    const slug = faker.lorem.word(3).replace(/\s/g, "")
+    const slug = faker.lorem.words(3).replace(/\s/g, "")
 
     try {
         const createPages = await new Page({

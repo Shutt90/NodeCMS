@@ -28,8 +28,6 @@ const pageSchema = new Schema ({
     },
     anchor: {
         type: String,
-        required: true,
-        default: this.name,
     },
 }, {  timestamps: true });
 
