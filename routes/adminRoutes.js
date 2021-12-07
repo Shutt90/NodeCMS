@@ -18,7 +18,7 @@ router.post('/pages/edit/:id', upload.array('images'), pagesController.pages_upd
 router.post('/pages/delete/:id', upload.none(), pagesController.pages_delete);
 router.post('/pages/deleteall', pagesController.pages_deleteAll);
 router.post('/pages/seed', pagesController.pages_seed);
-router.get('/news', upload.none(), newsController.news_index);
+router.get('/news', newsController.news_index);
 router.get('/news/create', newsController.news_create);
 router.post('/news/create', upload.single('images'), newsController.news_store);
 router.get('/news/edit/:id', newsController.news_edit);
