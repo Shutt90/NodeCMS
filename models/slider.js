@@ -14,8 +14,13 @@ const sliderSchema = new Schema ({
     images: {
         type: Array,
         required: true,
-        default: 99,
     },
+    position: {
+        type: Number,
+        required: true,
+        default: 99,
+    }
+
 }, {  timestamps: true });
 
 const Slider = mongoose.model('Slider', sliderSchema);

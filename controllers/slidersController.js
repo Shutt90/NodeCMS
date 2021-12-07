@@ -1,6 +1,15 @@
+const Slider = require('../models/slider')
+
 const sliders_index = async (req, res) => {
-    res.render('admin/slider', {
-        title: 'sliders',
+    
+    Slider.find().sort({ position: 1 })
+    .then((result) => {
+
+        res.render('admin/slider', {
+            title: "sliders",
+            sliders: result,
+        })
+
     })
 
 }
