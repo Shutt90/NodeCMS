@@ -13,6 +13,7 @@ const register_index = (req, res) => {
 }
 
 const register_store = async (req, res) => {
+    
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
         const verify_token = uuidv4();
@@ -173,7 +174,6 @@ const login_auth = async (req, res) => {
     const password = req.body.password;
     
     const success = await check_user(email, password);
-    console.log(success)
 
     if(success) {
         await check_verified(res, email)

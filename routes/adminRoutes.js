@@ -5,9 +5,8 @@ const pagesController = require('../controllers/pagesController');
 const newsController = require('../controllers/newsController');
 const slidersController = require('../controllers/slidersController');
 const settingsController = require('../controllers/settingsController');
+const permissions = require('../middleware/permissions');
 const upload = require('../upload')
-
-// const upload = multer({'dist': '../public//uploads/'})
 
 router.get('/dashboard', dashboardController.dashboard_index);
 
