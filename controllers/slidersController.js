@@ -23,14 +23,13 @@ const sliders_create = (req, res) => {
 };
 
 const sliders_store = async (req, res) => {
-    
 
     if(req.files.length > 0 ) {
         try {
             const slider = await new Slider({
                 title: req.body.title,
                 subtitle: req.body.subtitle,
-                images: req.body.dropzone,
+                images: req.files.images,
 
             })
 
@@ -41,8 +40,8 @@ const sliders_store = async (req, res) => {
             console.error(err);
         }
 
-
         res.status(200).send('Uploaded Slider');
+
     } else {
 
         try {
@@ -51,12 +50,13 @@ const sliders_store = async (req, res) => {
                 subtitle: req.body.subtitle,
             })
 
-            await page.save()
+            await slider.save()
             res.status(200).send('Uploaded without file')
 
         } catch(err) {
             console.error(err);
         }
+        
     }
 
 }

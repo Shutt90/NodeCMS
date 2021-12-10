@@ -122,7 +122,7 @@ const pages_update = async (req, res) => {
                 anchor: slug
             })
 
-            res.status(200).send('Updated without file')
+            res.status(200).send('Updated with file')
 
 
         } catch {

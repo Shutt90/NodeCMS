@@ -1,7 +1,8 @@
-import Dropzone from "dropzone";
+Dropzone.autoDiscover = false
 
-
-let myDropzone = new Dropzone(".dropzone");
-myDropzone.on("addedfile", file => {
-  console.log(`File added: ${file.name}`);
-});
+if (document.getElementById('upload')) {
+    let myDropzone = new Dropzone("#upload", {url: '/sliders/create'});
+    myDropzone.on("addedfile", file => {
+    console.log(`File added: ${file.name}`);
+    });     
+}
