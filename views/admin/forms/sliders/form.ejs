@@ -1,0 +1,17 @@
+<label for="title">Title:</label>
+<input type="text" name="title" id="slidertitle" placeholder="<%= locals.slider != undefined ? slider.name : "" %>">
+<label for="content">Content:</label>
+<img id="addContent" src="/images/icons/icons8-plus-64.png">
+<div id="content" class="content">
+    <textarea name="content-box1" class="contentBox" id="sliderscontent" placeholder="<%= locals.slider != undefined ? slider.content : "" %>"></textarea>
+</div>
+<label for="name">Images:</label>
+<input type="file" name="images" id="slidersupload" multiple>
+<% if(create === false) { %>
+    <% if(locals.slider != undefined && locals.slider.images != "") { %>
+        <img src="<%= slider.images %>" height="100" width="100" id="slidersimage">
+    <% } else { %>
+        <img src="/images/no-image.jpg" height="100" width="100" id="slidersplaceholderimg">
+    <% } %>
+<% } %>
+<input class="submit" type="submit">

@@ -23,7 +23,7 @@ const pageSchema = new Schema ({
         required: false,
     },
     sliders: {
-        type: Array,
+        type: String,
         required: false,
     },
     anchor: {
