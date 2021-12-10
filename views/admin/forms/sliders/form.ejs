@@ -2,8 +2,8 @@
 <input type="text" name="title" id="slidertitle" placeholder="<%= locals.slider != undefined ? slider.title : "" %>">
 <label for="subtitle">subtitle:</label>
 <input type="text" name="subtitle" id="slidersubtitle" placeholder="<%= locals.slider != undefined ? slider.subtitle : "" %>">
-<label for="name">Images:</label>
-<div class="dropzone" name="images" id="upload" multiple>
+<label for="sliderImage">Images:</label>
+<div name="sliderUpload" id="sliderUpload" class="dropzone" ></div>
 <% if(create === false) { %>
     <% if(locals.slider != undefined && locals.slider.images != "") { %>
         <img src="<%= slider.images %>" height="100" width="100" id="slidersimage">

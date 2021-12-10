@@ -29,7 +29,7 @@ const sliders_store = async (req, res) => {
             const slider = await new Slider({
                 title: req.body.title,
                 subtitle: req.body.subtitle,
-                images: req.files.images,
+                sliderImage: req.body.file,
 
             })
 

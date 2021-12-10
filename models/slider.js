@@ -11,7 +11,7 @@ const sliderSchema = new Schema ({
         type: String,
         required: true,
     },
-    images: {
+    sliderImage: {
         type: Array,
         required: true,
     },

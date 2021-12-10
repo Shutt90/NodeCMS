@@ -27,8 +27,8 @@ router.post('/news/edit/:id', uploadPath.imagesUpload.single('images', 10), news
 router.post('/news/delete/:id', uploadPath.imagesUpload.none(), newsController.news_delete);
 
 router.get('/sliders', slidersController.sliders_index);
-router.get('/sliders/create', uploadPath.sliderUpload.array('images', 10), slidersController.sliders_create);
-router.post('/sliders/create', uploadPath.sliderUpload.array('images', 10), slidersController.sliders_store);
+router.get('/sliders/create', uploadPath.sliderUpload.none(), slidersController.sliders_create);
+router.post('/sliders/create', uploadPath.sliderUpload.array('file', 10), slidersController.sliders_store);
 
 router.get('/settings', settingsController.settings_index);
 

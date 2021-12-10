@@ -3,7 +3,7 @@ const multer = require('multer')
 const imagesStorage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './public/uploads/')
-    },
+  },
 
     filename: function(req, file, cb) {
         cb(null, Date.now() + ' - ' + file.originalname)
@@ -17,7 +17,7 @@ const imagesStorage = multer.diskStorage({
   },
 
   filename: function(req, file, cb) {
-      cb(null, Date.now() + ' - ' + file.originalname)
+      cb(null, Date.now() + '-' + file.originalname)
   }
 
 })
