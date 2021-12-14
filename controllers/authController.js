@@ -8,6 +8,15 @@ function toLower(str) {
     return str.toLowerCase();
 }
 
+function confirmPassword(password, passwordConfirmation) {
+    if (password === passwordConfirmation) {
+        return password
+    } else {
+        return null
+    }
+    
+}
+
 const register_index = (req, res) => {
     res.render('auth/register', {title: 'Register'})
 }
@@ -15,10 +24,8 @@ const register_index = (req, res) => {
 const register_store = async (req, res) => {
     
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+        const hashedPassword = await bcrypt.hash(confirmPassword(req.body.password, req.body.password_confirmation), 10)
         const verify_token = uuidv4();
-
-
 
         const user = new User({
             first_name: toLower(req.body.first_name),
