@@ -8,23 +8,26 @@ function toLower(str) {
     return str.toLowerCase();
 }
 
-function confirmPassword(password, passwordConfirmation) {
-    if (password === passwordConfirmation) {
-        return password
-    } else {
-        return null
-    }
-    
-}
-
 const register_index = (req, res) => {
     res.render('auth/register', {title: 'Register'})
 }
 
 const register_store = async (req, res) => {
-    
+
+    function confirmPassword(password, passwordConfirmation) {
+        if (password === passwordConfirmation) {
+            return password
+        } else {
+            res.status('404').send('Passwords must match')
+        }
+        
+    }
+
+    const confirmedPass = confirmPassword(req.body.password, req.body.password_confirmation)
+    console.log(confirmedPass)
     try {
-        const hashedPassword = await bcrypt.hash(confirmPassword(req.body.password, req.body.password_confirmation), 10)
+
+        const hashedPassword = await bcrypt.hash(confirmedPass, 10)
         const verify_token = uuidv4();
 
         const user = new User({
