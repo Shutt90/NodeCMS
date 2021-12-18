@@ -24,7 +24,7 @@ const register_store = async (req, res) => {
     }
 
     const confirmedPass = confirmPassword(req.body.password, req.body.password_confirmation)
-    console.log(confirmedPass)
+
     try {
 
         const hashedPassword = await bcrypt.hash(confirmedPass, 10)

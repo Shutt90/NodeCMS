@@ -1,4 +1,5 @@
 const Slider = require('../models/slider')
+const redirect = require('../redirects/404')
 
 const sliders_index = async (req, res) => {
     
@@ -29,18 +30,32 @@ const sliders_store = async (req, res) => {
             const slider = await new Slider({
                 title: req.body.title,
                 subtitle: req.body.subtitle,
-                sliderImage: req.body.file,
-
+                sliderImage: req.files.map(file => {
+                    file.path
+                })
             })
 
+            const files = req.files.forEach(file => {
+                file.path
+                console.log(file)
+            })
+
+            console.log(files)
+            
             await slider.save();
-            res.status(200).send('Uploaded with file')
+
+            res.status(200).send('Uploaded Slider');
+
 
         } catch(err) {
             console.error(err);
+
+            if(err) {
+                redirect(req, res, 'Error!', 'Error!', err)
+            }
+
         }
 
-        res.status(200).send('Uploaded Slider');
 
     } else {
 
@@ -55,6 +70,10 @@ const sliders_store = async (req, res) => {
 
         } catch(err) {
             console.error(err);
+
+            if(err) {
+                redirect(req, res, 'Error!', 'Error!', err)
+            }
         }
         
     }

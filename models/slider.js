@@ -5,15 +5,15 @@ const sliderSchema = new Schema ({
 
     title: {
         type: String,
-        required: true,
+        required: false,
     },
     subtitle: {
         type: String,
-        required: true,
+        required: false,
     },
     sliderImage: {
         type: Array,
-        required: true,
+        required: false,
     },
 }, {  timestamps: true });
 
