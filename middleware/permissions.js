@@ -1,7 +1,7 @@
 const User = require('../models/user');
-const redirect404 = require('../redirects/404');
+const redirect = require('../redirects/404');
 
-const check_admin = async (id) => {
+module.exports = async function check_admin (req, res, next) {
 
     try {
 
@@ -17,9 +17,10 @@ const check_admin = async (id) => {
 
     } catch(err) {
         console.error(err);
-    }
-}
 
-module.exports = {
-    check_admin
+        if(err) {
+            redirect(req, res, 'Error!', 'Error!', err)
+        }
+    }
+
 }

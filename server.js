@@ -8,10 +8,12 @@ const secrets = require('./secrets');
 const userMigration = require('./migrations/userMigration')
 const app = express();
 const con = secrets.db;
+const permissions = require('./middleware/permissions')
 
 app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true })) //accepting form data
-app.use(methodOverride('_method'))
+app.use(permissions);
+
 
 app.locals.baseURL = "http://localhost:5000/"
 
@@ -23,7 +25,9 @@ mongoose.connect(con)
     .catch(err => console.log(err))
 
 
+
 userMigration.create_super();
+
 app.use(homeRoute);
 app.use(userRoute);
 app.use(adminRoute);
