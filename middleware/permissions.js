@@ -1,11 +1,12 @@
 const User = require('../models/user');
 const redirect = require('../redirects/404');
+const mongoose = require('mongoose')
 
 module.exports = async function check_admin (req, res, next) {
 
     try {
 
-        const user = await findOne({
+        const user = await mongoose.findOne({
             _id: id
         })
     

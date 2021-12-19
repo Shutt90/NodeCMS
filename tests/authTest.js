@@ -1,17 +1,14 @@
 const assert = require('assert')
 const authController = require('../controllers/authController')
 const mongoose = require('mongoose');
-const secrets = require('../secrets');
 
-const con = secrets.db;
-
-mongoose.connect(con)
+mongoose.connect(process.env.DB_HOST)
     .then(async function tests() {
         await test1();
         await test2();
 
         async function test1() {
-            const email = secrets.email
+            const email = process.env.EMAIL
 
             const result = await authController.test_auth(email)
             assert.deepEqual(result.email, email)
@@ -19,7 +16,7 @@ mongoose.connect(con)
 
         //Takes 2 arguements, email, password
         async function test2() {
-            const something = await authController.check_user(secrets.email, secrets.fakePassword)
+            const something = await authController.check_user(process.env.EMAIL, process.env.FAKE_PASSWORD)
             assert.equal(something, true)
 
         }

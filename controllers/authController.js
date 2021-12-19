@@ -1,7 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
-const secrets = require('../secrets');
 const { v4: uuidv4 } = require('uuid');
 
 function toLower(str) {
@@ -89,12 +88,12 @@ const send_verification = async (result, token, usersEmail) => {
     try {
 
         let transporter = nodemailer.createTransport({
-            host: secrets.ipAddress,
+            host: process.env.IP_ADDRESS,
             port: 465,
             secure: true,
             auth: {
-                user: secrets.noreply,
-                pass: secrets.password,
+                user: process.env.NO_REPLY,
+                pass: process.env.PASSWORD,
             },
             tls: {
                 rejectUnauthorized: false,
@@ -107,13 +106,13 @@ const send_verification = async (result, token, usersEmail) => {
             <p style="font-size: 1rem;">
                 Confirm you are a legend by clicking the link below, robots need not apply
             </p>
-            <a href="http://${secrets.HOST}:${secrets.PORT}/verify-user/${token}">
+            <a href="http://${process.env.HOST}:${process.env.PORT}/verify-user/${token}">
                 VERIFY ME
             </a>
         </div>`
     
         const mailOptions = {
-            from: secrets.noreply,
+            from: process.env.NO_REPLY,
             to: usersEmail,
             subject: 'Verification Email',
             html: email
