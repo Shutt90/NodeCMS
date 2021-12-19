@@ -32,7 +32,7 @@ const sliders_store = async (req, res) => {
                 subtitle: req.body.subtitle,
                 sliderImage: new Array,
             })
-            
+                
             slider.sliderImage.push(
                 ...req.files.map((file) => {
                     console.log(file.path)
@@ -78,8 +78,25 @@ const sliders_store = async (req, res) => {
 
 }
 
+const sliders_delete = async (req, res) => {
+
+    const id = req.params.id
+    backURL=req.header('Referer') || '/';
+
+    try {
+        await Slider.deleteOne({id: id})
+        res.redirect(backURL)
+
+    } catch(err) {
+        console.error(err)
+    }
+
+
+}
+
 module.exports = {
     sliders_index,
     sliders_create,
     sliders_store,
+    sliders_delete,
 }
