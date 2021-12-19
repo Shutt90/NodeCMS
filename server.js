@@ -1,18 +1,24 @@
 require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
-var methodOverride = require('method-override');
 const homeRoute = require('./routes/homeRoutes');
 const userRoute = require('./routes/userRoutes');
 const adminRoute = require('./routes/adminRoutes');
+const adminRoute = require('./routes/sysRoutes.js');
 const userMigration = require('./migrations/userMigration')
 const app = express();
 const permissions = require('./middleware/permissions')
+const session = require('express-session')
 
 app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true })) //accepting form data
 app.use(permissions);
+app.use(session({
+    secret: 'admin',
+    resave: true,
+    saveUninitialized: false,
 
+}))
 
 app.locals.baseURL = "http://localhost:5000/"
 
@@ -28,3 +34,5 @@ userMigration.create_super();
 app.use(homeRoute);
 app.use(userRoute);
 app.use(adminRoute);
+
+app.use(sysRoute);
