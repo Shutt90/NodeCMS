@@ -30,18 +30,16 @@ const sliders_store = async (req, res) => {
             const slider = await new Slider({
                 title: req.body.title,
                 subtitle: req.body.subtitle,
-                sliderImage: req.files.map(file => {
-                    file.path
-                })
+                sliderImage: new Array,
             })
-
-            const files = req.files.forEach(file => {
-                file.path
-                console.log(file)
-            })
-
-            console.log(files)
             
+            slider.sliderImage.push(
+                ...req.files.map((file) => {
+                    console.log(file.path)
+                  return file.path;
+                })
+              );
+
             await slider.save();
 
             res.status(200).send('Uploaded Slider');
