@@ -1,5 +1,7 @@
-const Slider = require('../models/slider')
-const redirect = require('../redirects/404')
+const Slider = require('../models/slider');
+const redirect = require('../redirects/404');
+const logger = require('../middleware/logger');
+
 
 const sliders_index = async (req, res) => {
     

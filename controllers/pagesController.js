@@ -80,7 +80,7 @@ const pages_store = async (req, res) => {
     }
 
 
-
+    
 }
 
 const pages_edit = (req, res) => {
