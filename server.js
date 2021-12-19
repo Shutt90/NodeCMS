@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const homeRoute = require('./routes/homeRoutes');
 const userRoute = require('./routes/userRoutes');
 const adminRoute = require('./routes/adminRoutes');
-const adminRoute = require('./routes/sysRoutes.js');
+const systemRoute = require('./routes/systemRoutes.js');
 const userMigration = require('./migrations/userMigration')
 const app = express();
 const permissions = require('./middleware/permissions')
@@ -35,4 +35,4 @@ app.use(homeRoute);
 app.use(userRoute);
 app.use(adminRoute);
 
-app.use(sysRoute);
+app.use(systemRoute);
