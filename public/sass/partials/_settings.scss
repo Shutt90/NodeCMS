@@ -1,0 +1,13 @@
+#settings-inner {
+
+    .inner-tabs {
+        display: flex;
+        flex-direction: column;
+
+        .submit-btn {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+    }
+}
