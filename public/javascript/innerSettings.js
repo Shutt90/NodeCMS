@@ -36,11 +36,22 @@ const profileHtml = `
 
 `
 
+const getTabs = document.querySelectorAll('.top-tab')
 
-socialsTab.addEventListener('click', function() {
-    getInner.innerHTML = socialsHtml
-})
+getTabs.forEach(ele => {
+    ele.addEventListener('click', function() {
+        
+        if(document.querySelector('.active') != null) {
+            document.querySelector('.active').classList.remove('active');
+        }
 
-profileTab.addEventListener('click', function() {
-    getInner.innerHTML = profileHtml
-})
+        ele.classList.add('active');
+
+        if(ele.id === 'profile-tab') {
+            getInner.innerHTML = profileHtml;
+        } else if (ele.id === 'socials-tab') {
+            getInner.innerHTML = socialsHtml;
+        }
+    }) 
+
+});
