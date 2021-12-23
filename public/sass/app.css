@@ -407,7 +407,13 @@ iframe {
 .internal .container-inner .page-container .page-length a img {
   padding-left: 0.5rem;
 }
-.internal .container-inner .settings-container .top-tab {
+.internal .container footer {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+
+.settings-container .top-tab {
   width: 50px;
   height: 20px;
   background: linear-gradient(to top right, #f2f2f2, black);
@@ -418,13 +424,8 @@ iframe {
   text-decoration: none;
   margin: 0 1rem;
 }
-.internal .container-inner .settings-container .top-tab .active {
-  color: red;
-}
-.internal .container footer {
-  position: absolute;
-  bottom: 0;
-  right: 10px;
+.settings-container .active {
+  background: red;
 }
 
 #settings-inner .inner-tabs {
