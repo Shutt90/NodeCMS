@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true })) //accepting form data
 app.use(permissions);
 app.use(session({
-    secret: 'admin',
+    secret: process.env.SECRET,
     resave: true,
     saveUninitialized: false,
 
