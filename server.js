@@ -9,6 +9,7 @@ const permissions = require('./middleware/permissions')
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const mongoose = require('mongoose');
+const visitors = require('./middleware/visitors')
 
 //Migrations
 const userMigration = require('./migrations/userMigration')
@@ -49,7 +50,7 @@ app.use(session({
 
 userMigration.create_super();
 
-app.use(homeRoute);
+app.use(visitors.check_unique, homeRoute);
 app.use(userRoute);
 app.use(permissions.isAuth, adminRoute);
 
