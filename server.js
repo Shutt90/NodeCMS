@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true })) //accepting form data
 app.use(permissions);
 app.use(session({
     secret: process.env.SECRET,
-    resave: true,
+    resave: false,
     saveUninitialized: false,
 
 }))

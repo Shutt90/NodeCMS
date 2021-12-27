@@ -186,6 +186,8 @@ const login_auth = async (req, res) => {
 
     if(success) {
         await check_verified(res, email)
+        console.log(req.session)
+
     } else {
         res.status(400).send("Invalid username/password")
     }

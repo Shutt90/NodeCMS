@@ -27,55 +27,37 @@ const sliders_create = (req, res) => {
 
 const sliders_store = async (req, res) => {
 
-    if(req.files.length > 0 ) {
-        try {
-            const slider = await new Slider({
-                title: req.body.title,
-                subtitle: req.body.subtitle,
-                sliderImage: new Array,
+    let fileArr = []
+    for (var i = 0; i < req.files.length; i++) {
+        if (fileArr[i] == 1) fileArr.push(5);
+        console.log(a[i]);
+    }
+
+    console.log(fileArr)
+    try {
+        const slider = await new Slider({
+            title: req.body.title,
+            subtitle: req.body.subtitle,
+        })
+            
+        slider.sliderImage.push(
+            ...req.files.map((file) => {
+                return file.path;
             })
-                
-            slider.sliderImage.push(
-                ...req.files.map((file) => {
-                    console.log(file.path)
-                  return file.path;
-                })
-              );
+        );
 
-            await slider.save();
+        await slider.save();
 
-            res.status(200).send('Uploaded Slider');
+        res.status(200).send('Uploaded Slider');
 
 
-        } catch(err) {
-            console.error(err);
+    } catch(err) {
+        console.error(err);
 
-            if(err) {
-                redirect(req, res, 'Error!', 'Error!', err)
-            }
-
+        if(err) {
+            redirect(req, res, 'Error!', 'Error!', err)
         }
 
-
-    } else {
-
-        try {
-            const slider = await new Slider({
-                title: req.body.title,
-                subtitle: req.body.subtitle,
-            })
-
-            await slider.save()
-            res.status(200).send('Uploaded without file')
-
-        } catch(err) {
-            console.error(err);
-
-            if(err) {
-                redirect(req, res, 'Error!', 'Error!', err)
-            }
-        }
-        
     }
 
 }
