@@ -1,17 +1,20 @@
 const Page = require('../models/page');
+const Slider = require('../models/slider');
 const faker = require('faker');
+const sysRedirect = require('../redirects/sysRedirect')
 
-const pages_index = (req, res) => {
+const pages_index = async (req, res) => {
 
-    Page.find().sort({ position: 1 })
-    .then((result) => {
-
+    try {
+        const pages = await Page.find().sort({ position: 1 })
         res.render('admin/pages', {
-            title: "pages",
-            pages: result,
+            title: 'pages',
+            pages: pages,
         })
-
-    })
+        
+    } catch(err) {
+        console.error(err)
+    }
 
 }
 
@@ -83,15 +86,16 @@ const pages_store = async (req, res) => {
     
 }
 
-const pages_edit = (req, res) => {
+const pages_edit = async (req, res) => {
     const id = req.params.id;
-    Page.findById(id)
-    .then(result => {
-        res.render('admin/forms/edit', {
-            title: 'pages',
-            create: false,
-            page: result,
-        })
+    const sliders = await Slider.find().sort({ position: 1 })
+    const page = await Page.findById(id)
+
+    res.render('admin/forms/edit', {
+        title: 'pages',
+        create: false,
+        page: page,
+        sliders: sliders,
     })
 
 }
@@ -119,7 +123,8 @@ const pages_update = async (req, res) => {
             await Page.findByIdAndUpdate(id, {
                 name: req.body.name,
                 content: req.body.content,
-                anchor: slug
+                anchor: slug,
+                sliders: req.body.slider,
             })
 
             res.status(200).send('Updated with file')
@@ -185,8 +190,6 @@ const pages_deleteAll = async(req, res) => {
 
 const pages_seed = async (req, res) => {
     
-
-
     const slug = faker.lorem.words(3).replace(/\s/g, "")
 
     try {
@@ -195,6 +198,8 @@ const pages_seed = async (req, res) => {
             content: faker.lorem.paragraphs(2),
             anchor: slug,
             images: faker.random.image(),
+            
+
         })
 
         await createPages.save()

@@ -25,6 +25,7 @@ const pageSchema = new Schema ({
     sliders: {
         type: String,
         required: false,
+        default: 'none',
     },
     anchor: {
         type: String,

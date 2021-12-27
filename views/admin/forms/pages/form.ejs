@@ -1,14 +1,15 @@
 <label for="name">Title:</label>
-<input type="text" name="name" id="pagesname" placeholder="<%= locals.page != undefined ? page.name : "" %>">
+<input type="text" name="name" id="pagesname" value="<%= locals.page != undefined ? page.name : "" %>">
+<%= locals.page.name %>
 <label for="content">Content:</label>
 <img id="addContent" src="/images/icons/icons8-plus-64.png">
 <div id="content" class="content">
-    <textarea name="content-box1" class="contentBox" id="pagescontent" placeholder="<%= locals.page != undefined ? page.content : "" %>"></textarea>
+    <textarea name="content-box1" class="contentBox" id="pagescontent" ><%= locals.page != undefined ? page.content : "" %></textarea>
 </div>
 <label for="name">Link (defaults to title if left blank):</label>
-<input type="text" name="anchor" id="pagesanchor" placeholder="<%= locals.page != undefined ? page.anchor : "" %>">
+<input type="text" name="anchor" id="pagesanchor" value="<%= locals.page != undefined ? page.anchor : "" %>">
 <label for="name">Images:</label>
-<input type="file" name="images" id="pagesupload" multiple>>
+<input type="file" name="images" id="pagesupload" multiple>
 <% if(create === false) { %>
     <% if(locals.page != undefined && locals.page.images != "") { %>
         <img src="<%= page.images %>" height="100" width="100" id="pagesimage">
@@ -16,4 +17,14 @@
         <img src="/images/no-image.jpg" height="100" width="100" id="pagesplaceholderimg">
     <% } %>
 <% } %>
+
+<label for="slider">Slider to use</label>
+<select value= name="slider" id="slider-select">
+    <option value="none">None</option>
+    <% sliders.forEach(slider => { %>
+        <%= slider.name %>
+        <option <%= page.sliders === slider.title ? 'selected="selected"' : "" %> value="<%=slider.name%>"><%=slider.name%></option>
+    <% }) %>
+</select>
+    
 <input class="submit" type="submit">
