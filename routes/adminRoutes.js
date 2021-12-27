@@ -7,6 +7,7 @@ const slidersController = require('../controllers/slidersController');
 const settingsController = require('../controllers/settingsController');
 const permissions = require('../middleware/permissions');
 const uploadPath = require('../upload')
+const authController = require('../controllers/authController');
 
 router.get('/dashboard', dashboardController.dashboard_index);
 
@@ -33,5 +34,7 @@ router.post('/sliders/delete/:id', uploadPath.sliderUpload.none(), slidersContro
 
 
 router.get('/settings', settingsController.settings_index);
+
+router.post('/logout', authController.logout_user);
 
 module.exports = router

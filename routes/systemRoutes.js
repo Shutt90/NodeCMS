@@ -1,8 +1,7 @@
 const express = require('express')
 const router = express.Router();
-const redirect = require('../redirects/404');
-const systemController = require('../controllers/systemController')
+const sysRedirect = require('../redirects/sysRedirect');
 
-router.get('/404', systemController.redirect404)
+router.get('/404', sysRedirect)
 
 module.exports = router;

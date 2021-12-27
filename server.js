@@ -1,20 +1,28 @@
-require('dotenv').config()
+//Framework 
 const express = require('express');
+const app = express();
+
+//Middleware
+require('dotenv').config()
+const flash =  require('connect-flash');
+const permissions = require('./middleware/permissions')
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const mongoose = require('mongoose');
+
+//Migrations
+const userMigration = require('./migrations/userMigration')
+
+// Routes
 const homeRoute = require('./routes/homeRoutes');
 const userRoute = require('./routes/userRoutes');
 const adminRoute = require('./routes/adminRoutes');
 const systemRoute = require('./routes/systemRoutes.js');
-const userMigration = require('./migrations/userMigration')
-const app = express();
-const redirect = require('./redirects/404')
-const permissions = require('./middleware/permissions')
-const session = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(session);
 
 
 app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true })) //accepting form data
+app.use(flash());
 
 app.locals.baseURL = "http://localhost:5000/"
 

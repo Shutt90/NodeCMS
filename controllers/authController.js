@@ -2,6 +2,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const { v4: uuidv4 } = require('uuid');
+const sysRedirect = require('../redirects/sysRedirect');
 
 function toLower(str) {
     return str.toLowerCase();
@@ -160,6 +161,7 @@ const verified_user = async (req, res) => {
             linkMessage: null
 
         })
+
     } else {
         res.render('system/system', {
             title: 'Verification',
@@ -174,7 +176,7 @@ const verified_user = async (req, res) => {
 }
 
 const login_index = (req, res) => {
-    res.render('auth/login', {title: 'login'})
+    res.render('auth/login', {title: 'login'});
 }
 
 const login_auth = async (req, res) => {
@@ -207,7 +209,8 @@ const check_verified = async(req, res, email) => {
             greeting: "You haven't yet verified your account, please check your emails and try again",
             user: null,
             link: null,
-            linkMessage: null
+            linkMessage: null,
+            messages: req.flash('info')
         })
     } else {
         req.session.isAuth = true
@@ -237,6 +240,15 @@ const check_user = async (email, password) => {
     return success
 }
 
+const logout_user = async (req, res) => {
+
+    req.session.destroy(err => {
+        if(err) throw err;
+        sysRedirect(req, res, 'Logged Out', 'Logged Out', 'You have successfully logged out, you can log back in with the button below', undefined, '/login', 'Login')
+    })
+
+}
+
 
 const test_auth = async (email) => {
 
@@ -258,4 +270,5 @@ module.exports = {
     check_user,
     send_verification,
     verified_user,
+    logout_user,
 }

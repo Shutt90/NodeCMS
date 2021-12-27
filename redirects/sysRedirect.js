@@ -1,7 +1,4 @@
-const express = require('express');
-const app = express();
-
-const redirect404 = async (req, res, title, h1Text, h3Text, user, link, linkMessage) => {
+const sysRedirect = async (req, res, title, h1Text, h3Text, user, link, linkMessage) => {
     return await res.render('system/system', {
         title: title,
         message: h1Text,
@@ -13,4 +10,4 @@ const redirect404 = async (req, res, title, h1Text, h3Text, user, link, linkMess
 
 }
 
-module.exports = redirect404;
+module.exports = sysRedirect;

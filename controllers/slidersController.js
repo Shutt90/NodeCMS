@@ -1,5 +1,5 @@
 const Slider = require('../models/slider');
-const redirect = require('../redirects/404');
+const sysRedirect = require('../redirects/sysRedirect');
 const logger = require('../middleware/logger');
 
 
@@ -55,7 +55,7 @@ const sliders_store = async (req, res) => {
         console.error(err);
 
         if(err) {
-            redirect(req, res, 'Error!', 'Error!', err)
+            sysRedirect(req, res, 'Error!', 'Error!', err)
         }
 
     }
