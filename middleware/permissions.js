@@ -2,7 +2,17 @@ const User = require('../models/user');
 const redirect = require('../redirects/404');
 const mongoose = require('mongoose')
 
-module.exports = async function check_admin (req, res, next, id) {
+
+const isAuth = (req, res, next) => {
+    if(req.session.isAuth) {
+        next()
+    } else {
+        redirect(req, res, 'Not Allowed', 'You need to login, or do not have permission', 'Please login or try again', undefined, '/login', 'Login Here')
+        
+    }
+}
+
+const check_admin = async (req, res, next, id) => {
 
     try {
 
@@ -24,4 +34,11 @@ module.exports = async function check_admin (req, res, next, id) {
         }
     }
 
+}
+
+
+
+module.exports = {
+    isAuth,
+    check_admin
 }

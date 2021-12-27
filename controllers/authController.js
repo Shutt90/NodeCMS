@@ -185,15 +185,14 @@ const login_auth = async (req, res) => {
     const success = await check_user(email, password);
 
     if(success) {
-        await check_verified(res, email)
-        console.log(req.session)
+        await check_verified(req, res, email)
 
     } else {
         res.status(400).send("Invalid username/password")
     }
 }
 
-const check_verified = async(res, email) => {
+const check_verified = async(req, res, email) => {
 
     const user = await User.findOne({
         email: email,
@@ -211,6 +210,7 @@ const check_verified = async(res, email) => {
             linkMessage: null
         })
     } else {
+        req.session.isAuth = true
         res.status(200).redirect('dashboard')
     }
     
