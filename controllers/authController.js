@@ -214,6 +214,10 @@ const check_verified = async(req, res, email) => {
         })
     } else {
         req.session.isAuth = true
+
+        if(user.admin == true) {
+            req.session.isAdmin = true
+        }
         res.status(200).redirect('dashboard')
     }
     

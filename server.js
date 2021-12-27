@@ -43,7 +43,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     store: store,
-    isAuth: false
+    isAuth: false,
+    isAdmin: false
 }))
 
 userMigration.create_super();
