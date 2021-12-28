@@ -36,6 +36,17 @@
                     border: 1px black solid;
                     border-radius: 2rem;
                     background-color: white;
+                    display: flex;
+                    align-items: center;
+
+                    .central {
+                        margin: 0 auto;
+                        text-align: center;
+
+                        h3 {
+                            font-size: 2rem;
+                        }
+                    }
                 }
 
                 .wide {
