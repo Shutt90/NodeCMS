@@ -29,6 +29,24 @@
             color: $primary;
             text-decoration: none;            
         }
+
+        .logout-btn {
+            background-color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 3rem;
+            padding: 1rem;
+            margin-left: auto;
+            list-style: none;
+            text-align: right;
+            color: $primary;
+            text-decoration: none;
+            cursor: pointer;
+            font-family: 'Bebas Neue', cursive;
+
+        }
     }
 
 }
