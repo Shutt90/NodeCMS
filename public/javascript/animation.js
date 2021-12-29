@@ -1,29 +1,30 @@
 const goPage = document.getElementById('go-page');
 
-var tl = gsap.to(goPage, {
-            x: "5px",
-            paused: true,
-            repeat: -1,
-            duration: 0.5,
-            yoyo: true
-        })
+
+if(goPage != null) {
+    var tl = gsap.to(goPage, {
+                x: "5px",
+                paused: true,
+                repeat: -1,
+                duration: 0.5,
+                yoyo: true
+            })
 
 
-goPage.addEventListener('mouseenter', function(e) {
-    
-    tl.play();
-})
+    goPage.addEventListener('mouseenter', function() {
+        
+        tl.play();
+    })
 
-goPage.addEventListener('mouseleave', function() {
+    goPage.addEventListener('mouseleave', function() {
 
-    tl.pause();
+        tl.pause();
 
-})
-
+    })
+}
 
 const newPage = document.getElementById('addPage')
 const deleteAll = document.getElementById('deleteAll')
-
 
 const appearingText = gsap.to('#page-text .flying-letter', {
     opacity: 1,
@@ -57,18 +58,21 @@ deleteAll.addEventListener('mouseleave', function() {
     appearingDelete.reverse();
 })
 
-
+//Mobile nav animation
 const nav = gsap.to('.nav-container', {
-    x: '300px',
+    x: '270px',
+    paused: true,
 })
 
+const menu = document.getElementById('hamburger')
 
-document.getElementById('hamburger').addEventListener('click', function() {
+menu.addEventListener('click', function() {
+    if(menu.classList.contains('active')) {
+        nav.reverse()
+        menu.classList.remove('active')
+    } else {
+        menu.classList.add('active')
+        nav.play()
 
-    nav.play()
-})
-
-document.getElementById('hamburger').addEventListener('click', function() {
-
-    nav.reverse()
+    }
 })
