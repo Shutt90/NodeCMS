@@ -48,6 +48,29 @@
 
         }
     }
+}
+@media all and (min-width: 997px) {
+    #hamburger {
+        display: none;
+    }
+
+}
+/* Responsive */
+
+@media all and (max-width: 996px) {
+
+    #hamburger {
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+    }
+
+    .nav-container {
+        position: fixed;
+        left: -300px;
+        top: 0;
+    }
 
 }
 

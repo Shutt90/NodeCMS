@@ -1,4 +1,4 @@
-const goPage = document.querySelector('#go-page');
+const goPage = document.getElementById('go-page');
 
 var tl = gsap.to(goPage, {
             x: "5px",
@@ -55,4 +55,20 @@ deleteAll.addEventListener('mouseenter', function() {
 
 deleteAll.addEventListener('mouseleave', function() {
     appearingDelete.reverse();
+})
+
+
+const nav = gsap.to('.nav-container', {
+    x: '300px',
+})
+
+
+document.getElementById('hamburger').addEventListener('click', function() {
+
+    nav.play()
+})
+
+document.getElementById('hamburger').addEventListener('click', function() {
+
+    nav.reverse()
 })
