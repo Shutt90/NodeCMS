@@ -1,4 +1,7 @@
 <nav class="user-nav">
+    <a class="nav-items" href="/news">
+        News
+    </a>
     <% if(locals.pages != undefined) { %>
         <% pages.forEach((page) => { %>
             <a class="nav-items" href="/page/<%= page.anchor %>">

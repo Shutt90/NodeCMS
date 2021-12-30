@@ -1,4 +1,5 @@
 const Page = require('../models/page')
+const News = require('../models/news')
 
 const home_index = async (req, res) => {
     try {
@@ -39,8 +40,24 @@ const home_dynamic = async (req, res) => {
 
 }
 
+const news_index = async function(req, res) {
+    try {
+
+        const news = await News.find().sort({'timestamp': '-1'})
+        res.render('../views/news', {
+            title: 'News',
+            news: news,
+
+        })
+
+    } catch (err) {
+        console.error(err)
+    }
+
+}
 
 module.exports = {
     home_index,
     home_dynamic,
+    news_index
 }
