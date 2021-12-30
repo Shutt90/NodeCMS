@@ -6,7 +6,10 @@
         <h1 class="title-txt">Latest News</h1>
     </div>
     <div class="content">
-        <p class="content-text">Content</p>
+        <% news.forEach(item => { %>
+            <h3 class="news-title"><%=item.title%></h3>
+            <a href="<%=item.title%>">Read more...</a>
+        <% }) %>
     </div>
 
 </section>

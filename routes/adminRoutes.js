@@ -20,12 +20,14 @@ router.post('/pages/delete/:id', uploadPath.imagesUpload.none(), pagesController
 router.post('/pages/deleteall', pagesController.pages_deleteAll);
 router.post('/pages/seed', pagesController.pages_seed);
 
+
 router.get('/news', newsController.news_index);
 router.get('/news/create', newsController.news_create);
 router.post('/news/create', uploadPath.imagesUpload.single('images', 10), newsController.news_store);
 router.get('/news/edit/:id', newsController.news_edit);
 router.post('/news/edit/:id', uploadPath.imagesUpload.single('images', 10), newsController.news_update);
 router.post('/news/delete/:id', uploadPath.imagesUpload.none(), newsController.news_delete);
+router.post('/news/seed', newsController.news_seed);
 
 router.get('/sliders', slidersController.sliders_index);
 router.get('/sliders/create', uploadPath.sliderUpload.none(), slidersController.sliders_create);

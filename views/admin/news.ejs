@@ -11,13 +11,19 @@
             Create new News item
         </a>
 
+        <form id="addNews" method="POST" action="/news/seed">
+            <button type="submit" onclick="confirm('Migrate a page?');">
+                <img src="/images/icons/icons8-one-page-48.png">
+            </button>
+        </form>
+
         <div class="page-container">
 
             <% if (news.length > 0 ) { %>
                 <% news.forEach(item => {%>
-                    <div class="<%item.title%>-length">
+                    <div class="page-length">
                         <a href="/<%=title%>/edit/<%=item.id%>">
-                            <h3><%=item.name%></h3>
+                            <h3><%=item.title%></h3>
                         </a>
                         <div class="right-side">
                             <form action="/<%=title%>/delete/<%=item.id%>" method="POST" >
@@ -26,7 +32,7 @@
                                 </button>
                             </form>
                             
-                            <a class="go-link" href="<%=item.anchor%>">
+                            <a class="go-link" href="<%=item.title%>">
                                 <img id="go-<%=title%>" src="/images/icons/icons8-forward-48.png">
                             </a>
                         </div>

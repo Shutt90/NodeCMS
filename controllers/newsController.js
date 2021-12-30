@@ -1,4 +1,6 @@
 const News = require('../models/news');
+const stringHelper = require('../helpers/string');
+const faker = require('faker');
 
 const news_index = (req, res) => {
     News.find().sort({ position: 1 })
@@ -109,9 +111,29 @@ const news_delete = async (req, res) => {
     } catch(err) {
         console.error(err)
     }
+   
+}
 
+const news_seed = async (req, res) => {
 
+    const para = faker.lorem.paragraph(2)
+    const snippet = stringHelper.truncate(para, 25)
+
+    try {
+        const createNews = await new News({
+            title: faker.lorem.words(3),
+            snippet: snippet,
+            content: para,
+            images: faker.random.image(),
+        })
+
+        await createNews.save()
+        
+    } catch(err) {
+        console.error(err);
+    }
     
+    res.status(200).redirect('/news/');
 }
 
 
@@ -122,4 +144,5 @@ module.exports = {
     news_edit,
     news_update,
     news_delete,
+    news_seed,
 }
